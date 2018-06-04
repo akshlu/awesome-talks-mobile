@@ -1,5 +1,5 @@
 import { Navigation } from 'react-native-navigation';
-import { registerScreens } from './screens/registerScreens';
+import { screens, registerScreens } from './screens';
 
 registerScreens();
 
@@ -7,13 +7,16 @@ Navigation.startTabBasedApp({
     tabs: [
         {
             label: 'Talks',
-            screen: 'AwesomeTalks.TalksScreen',
+            screen: screens.TALKS_SCREEN,
             title: 'Talks'
         },
         {
             label: 'Speakers',
-            screen: 'AwesomeTalks.SpeakersScreen',
+            screen: screens.SPEAKERS_SCREEN,
             title: 'Speakers'
         }
-    ]
+    ],
+    appStyle: {
+        largeTitle: true
+    }
 });

@@ -7,8 +7,4 @@ const TalksScreen = () => (
     </View>
 );
 
-TalksScreen.navigatorStyle = {
-    largeTitle: true
-};
-
 export default TalksScreen;
