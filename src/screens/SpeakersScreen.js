@@ -1,24 +1,12 @@
 import React from 'react';
 import { ApolloProvider, Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import { getApolloClient } from '../net/graphqlClient';
 import SpeakerList from '../components/SpeakerList';
+import { SPEAKERS_QUERY } from '../net/queries';
 
 const SpeakersScreen = () => (
     <ApolloProvider client={getApolloClient()}>
-        <Query
-            query={gql`
-                {
-                    allSpeakerses(orderBy: name_ASC) {
-                        id
-                        name
-                        photo {
-                            url
-                        }
-                    }
-                }
-            `}
-        >
+        <Query query={SPEAKERS_QUERY}>
             {({ loading, error, data }) => {
                 if (!data.allSpeakerses) {
                     return null;
