@@ -1,10 +1,24 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { ApolloProvider, Query } from 'react-apollo';
+import { getApolloClient } from '../net/graphqlClient';
+import TalksList from '../components/TalkList';
+import { TALKS_QUERY } from '../net/queries';
+import Loading from '../components/Loading';
 
 const TalksScreen = () => (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Talks</Text>
-    </View>
+    <ApolloProvider client={getApolloClient()}>
+        <Query query={TALKS_QUERY}>
+            {({ loading, error, data }) => {
+                if (loading) {
+                    return <Loading />;
+                }
+                if (!data.allVideoses) {
+                    return null;
+                }
+                return <TalksList talksList={data.allVideoses} />;
+            }}
+        </Query>
+    </ApolloProvider>
 );
 
 export default TalksScreen;
