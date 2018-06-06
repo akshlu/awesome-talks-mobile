@@ -36,7 +36,7 @@ const SpeakerCard = props => {
                 {photo && (
                     <Image
                         style={styles.speakerPhoto}
-                        source={{ uri: getSpeakerPhoto(props.item) }}
+                        source={{ uri: photo }}
                     />
                 )}
             </View>
