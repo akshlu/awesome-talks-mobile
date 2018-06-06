@@ -35,7 +35,6 @@ function getVideoPreview(talk) {
 
 const TalkCard = props => {
     const preview = getVideoPreview(props.item);
-    console.log(preview);
     return (
         <View style={styles.talkCard}>
             <View style={styles.talkPreviewView}>
