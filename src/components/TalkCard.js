@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import R from 'ramda';
@@ -42,27 +42,30 @@ function getSpeakers(talk) {
     return R.join(',', listOfNames);
 }
 
-const TalkCard = props => {
-    const preview = getVideoPreview(props.item);
-    return (
-        <View style={styles.talkCard}>
-            <View style={styles.talkPreviewView}>
-                {preview && (
-                    <Image
-                        style={styles.talkPreview}
-                        source={{ uri: preview }}
-                    />
-                )}
+class TalkCard extends PureComponent {
+    render() {
+        const { item } = this.props;
+        const preview = getVideoPreview(item);
+        return (
+            <View style={styles.talkCard}>
+                <View style={styles.talkPreviewView}>
+                    {preview && (
+                        <Image
+                            style={styles.talkPreview}
+                            source={{ uri: preview }}
+                        />
+                    )}
+                </View>
+                <View style={styles.talkNameView}>
+                    <Text style={styles.talkNameText}>{item.name}</Text>
+                    <Text style={styles.talkSpeakersText}>
+                        {getSpeakers(item)}
+                    </Text>
+                </View>
             </View>
-            <View style={styles.talkNameView}>
-                <Text style={styles.talkNameText}>{props.item.name}</Text>
-                <Text style={styles.talkSpeakersText}>
-                    {getSpeakers(props.item)}
-                </Text>
-            </View>
-        </View>
-    );
-};
+        );
+    }
+}
 
 TalkCard.propTypes = {
     item: PropTypes.object
