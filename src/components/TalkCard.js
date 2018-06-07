@@ -17,11 +17,15 @@ const styles = StyleSheet.create({
         width: 120,
         height: 90
     },
-    talkName: {
+    talkNameView: {
         alignItems: 'flex-start',
-        justifyContent: 'center',
-        paddingLeft: 20,
+        paddingLeft: 10,
         flex: 1
+    },
+    talkNameText: {},
+    talkSpeakersText: {
+        fontSize: 12,
+        color: 'gray'
     }
 });
 
@@ -31,6 +35,11 @@ function getVideoPreview(talk) {
         return null;
     }
     return R.replace('{0}', link)(config.youtubeThumbnail);
+}
+
+function getSpeakers(talk) {
+    const listOfNames = R.pluck('name', talk.speaker);
+    return R.join(',', listOfNames);
 }
 
 const TalkCard = props => {
@@ -45,8 +54,11 @@ const TalkCard = props => {
                     />
                 )}
             </View>
-            <View style={styles.talkName}>
-                <Text>{props.item.name}</Text>
+            <View style={styles.talkNameView}>
+                <Text style={styles.talkNameText}>{props.item.name}</Text>
+                <Text style={styles.talkSpeakersText}>
+                    {getSpeakers(props.item)}
+                </Text>
             </View>
         </View>
     );

@@ -18,6 +18,10 @@ export const TALKS_QUERY = gql`
             id
             name
             link
+            speaker {
+                id
+                name
+            }
         }
     }
 `;
