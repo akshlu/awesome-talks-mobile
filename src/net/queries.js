@@ -18,6 +18,7 @@ export const TALKS_QUERY = gql`
             id
             name
             link
+            duration
             speaker {
                 id
                 name

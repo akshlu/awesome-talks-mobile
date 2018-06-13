@@ -26,6 +26,10 @@ const styles = StyleSheet.create({
     talkSpeakersText: {
         fontSize: 12,
         color: 'gray'
+    },
+    talkDuration: {
+        fontSize: 10,
+        color: 'gray'
     }
 });
 
@@ -40,6 +44,20 @@ function getVideoPreview(talk) {
 function getSpeakers(talk) {
     const listOfNames = R.pluck('name', talk.speaker);
     return R.join(',', listOfNames);
+}
+
+function getDuration(seconds) {
+    if (seconds < 60) {
+        return `${seconds}s`;
+    }
+    const durationSeconds = seconds % 60;
+    const minutes = (seconds - durationSeconds) / 60;
+    if (seconds < 3600) {
+        return `${minutes}m`;
+    }
+    const minutesWithoutHours = minutes % 60;
+    const hours = (minutes - minutesWithoutHours) / 60;
+    return `${hours}h ${minutesWithoutHours}m`;
 }
 
 class TalkCard extends PureComponent {
@@ -60,6 +78,9 @@ class TalkCard extends PureComponent {
                     <Text style={styles.talkNameText}>{item.name}</Text>
                     <Text style={styles.talkSpeakersText}>
                         {getSpeakers(item)}
+                    </Text>
+                    <Text style={styles.talkDuration}>
+                        {getDuration(item.duration)}
                     </Text>
                 </View>
             </View>
