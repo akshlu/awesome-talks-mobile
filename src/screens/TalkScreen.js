@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
+import YouTubePlayer from 'react-native-youtube';
 
 const styles = StyleSheet.create({
     talkScreen: {
@@ -8,13 +9,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     video: {
-        height: 200,
-        backgroundColor: 'black',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    videoWarning: {
-        color: 'white'
+        alignSelf: 'stretch',
+        height: 200
     },
     talkTitle: {
         fontSize: 16,
@@ -24,9 +20,7 @@ const styles = StyleSheet.create({
 
 const TalkScreen = (props) => (
     <View style={styles.talkScreen}>
-        <View style={styles.video}>
-            <Text style={styles.videoWarning}>Awesome Black Rectangle</Text>
-        </View>
+        <YouTubePlayer videoId={props.item.link} style={styles.video} />
         <Text style={styles.talkTitle}>{props.item.name}</Text>
     </View>
 );
