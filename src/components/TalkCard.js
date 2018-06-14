@@ -42,7 +42,7 @@ function getVideoPreview(talk) {
 }
 
 function getSpeakers(talk) {
-    const listOfNames = R.pluck('name', talk.speaker);
+    const listOfNames = R.pluck('name', R.propOr('', 'speaker')(talk));
     return R.join(',', listOfNames);
 }
 

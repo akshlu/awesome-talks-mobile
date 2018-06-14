@@ -18,6 +18,12 @@ export const SPEAKER_QUERY = gql`
             id
             name
             bio
+            videoses {
+                id
+                name
+                link
+                duration
+            }
         }
     }
 `;
