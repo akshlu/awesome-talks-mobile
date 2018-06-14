@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 
@@ -29,29 +29,40 @@ function getSpeakerPhoto(speaker) {
 }
 
 class SpeakerCard extends PureComponent {
+    handlePress = () => {
+        const { onPress, item } = this.props;
+        if (!onPress) {
+            return;
+        }
+        onPress(item);
+    };
+
     render() {
         const { item } = this.props;
         const photo = getSpeakerPhoto(item);
         return (
-            <View style={styles.speakerCard}>
-                <View style={styles.speakerPhotoView}>
-                    {photo && (
-                        <Image
-                            style={styles.speakerPhoto}
-                            source={{ uri: photo }}
-                        />
-                    )}
+            <TouchableOpacity onPress={this.handlePress}>
+                <View style={styles.speakerCard}>
+                    <View style={styles.speakerPhotoView}>
+                        {photo && (
+                            <Image
+                                style={styles.speakerPhoto}
+                                source={{ uri: photo }}
+                            />
+                        )}
+                    </View>
+                    <View style={styles.speakerName}>
+                        <Text>{item.name}</Text>
+                    </View>
                 </View>
-                <View style={styles.speakerName}>
-                    <Text>{item.name}</Text>
-                </View>
-            </View>
+            </TouchableOpacity>
         );
     }
 }
 
 SpeakerCard.propTypes = {
-    item: PropTypes.object
+    item: PropTypes.object,
+    onPress: PropTypes.func
 };
 
 export default SpeakerCard;

@@ -2,15 +2,31 @@ import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import TalkCard from './TalkCard';
+import { screens } from '../screens';
 
 export default class TalksList extends Component {
+    handlePressTalkCard = (item) => {
+        if (!item) {
+            return;
+        }
+        this.props.navigator.push({
+            screen: screens.TALK_SCREEN,
+            navigatorStyle: {
+                largeTitle: false
+            },
+            passProps: {
+                item
+            }
+        });
+    };
+
     keyExtractor(item) {
         return item.id;
     }
 
-    renderItem({ item }) {
-        return <TalkCard item={item} />;
-    }
+    renderItem = ({ item }) => {
+        return <TalkCard item={item} onPress={this.handlePressTalkCard} />;
+    };
 
     render() {
         return (
@@ -24,5 +40,6 @@ export default class TalksList extends Component {
 }
 
 TalksList.propTypes = {
-    talksList: PropTypes.array
+    talksList: PropTypes.array,
+    navigator: PropTypes.object.isRequired
 };

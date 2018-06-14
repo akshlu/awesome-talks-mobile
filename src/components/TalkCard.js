@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 import config from '../config';
@@ -61,35 +61,46 @@ function getDuration(seconds) {
 }
 
 class TalkCard extends PureComponent {
+    handlePress = () => {
+        const { onPress, item } = this.props;
+        if (!onPress) {
+            return;
+        }
+        onPress(item);
+    };
+
     render() {
         const { item } = this.props;
         const preview = getVideoPreview(item);
         return (
-            <View style={styles.talkCard}>
-                <View style={styles.talkPreviewView}>
-                    {preview && (
-                        <Image
-                            style={styles.talkPreview}
-                            source={{ uri: preview }}
-                        />
-                    )}
+            <TouchableOpacity onPress={this.handlePress}>
+                <View style={styles.talkCard}>
+                    <View style={styles.talkPreviewView}>
+                        {preview && (
+                            <Image
+                                style={styles.talkPreview}
+                                source={{ uri: preview }}
+                            />
+                        )}
+                    </View>
+                    <View style={styles.talkNameView}>
+                        <Text style={styles.talkNameText}>{item.name}</Text>
+                        <Text style={styles.talkSpeakersText}>
+                            {getSpeakers(item)}
+                        </Text>
+                        <Text style={styles.talkDuration}>
+                            {getDuration(item.duration)}
+                        </Text>
+                    </View>
                 </View>
-                <View style={styles.talkNameView}>
-                    <Text style={styles.talkNameText}>{item.name}</Text>
-                    <Text style={styles.talkSpeakersText}>
-                        {getSpeakers(item)}
-                    </Text>
-                    <Text style={styles.talkDuration}>
-                        {getDuration(item.duration)}
-                    </Text>
-                </View>
-            </View>
+            </TouchableOpacity>
         );
     }
 }
 
 TalkCard.propTypes = {
-    item: PropTypes.object
+    item: PropTypes.object,
+    onPress: PropTypes.func
 };
 
 export default TalkCard;
