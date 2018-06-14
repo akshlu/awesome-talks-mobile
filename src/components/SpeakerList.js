@@ -11,7 +11,8 @@ export default class SpeakerList extends Component {
         }
         this.props.navigator.push({
             screen: screens.SPEAKER_SCREEN,
-            title: item.name
+            title: item.name,
+            passProps: { item }
         });
     };
 
