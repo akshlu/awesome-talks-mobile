@@ -22,6 +22,7 @@ const TalkScreen = (props) => (
     <View style={styles.talkScreen}>
         <YouTubePlayer videoId={props.item.link} style={styles.video} />
         <Text style={styles.talkTitle}>{props.item.name}</Text>
+        <Text>{props.item.description}</Text>
     </View>
 );
 

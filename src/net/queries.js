@@ -23,6 +23,7 @@ export const SPEAKER_QUERY = gql`
                 name
                 link
                 duration
+                description
             }
         }
     }
@@ -35,6 +36,7 @@ export const TALKS_QUERY = gql`
             name
             link
             duration
+            description
             speaker {
                 id
                 name
