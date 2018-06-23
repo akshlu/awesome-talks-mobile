@@ -31,7 +31,7 @@ const TalksScreen = (props) => (
     </ApolloProvider>
 );
 
-TalksList.propTypes = {
+TalksScreen.propTypes = {
     navigator: PropTypes.object.isRequired
 };
 

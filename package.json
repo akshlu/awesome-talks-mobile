@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "precommit": "lint-staged",
-    "lint": "eslint index.js src",
+    "lint": "eslint index.js src test",
     "run-ios": "react-native run-ios",
     "run-android": "react-native run-android",
     "start": "node node_modules/react-native/local-cli/cli.js start",

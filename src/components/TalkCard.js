@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 import config from '../config';
+import { getDurationString } from '../services/calendar';
 
 const styles = StyleSheet.create({
     talkCard: {
@@ -46,20 +47,6 @@ function getSpeakers(talk) {
     return R.join(',', listOfNames);
 }
 
-function getDuration(seconds) {
-    if (seconds < 60) {
-        return `${seconds}s`;
-    }
-    const durationSeconds = seconds % 60;
-    const minutes = (seconds - durationSeconds) / 60;
-    if (seconds < 3600) {
-        return `${minutes}m`;
-    }
-    const minutesWithoutHours = minutes % 60;
-    const hours = (minutes - minutesWithoutHours) / 60;
-    return `${hours}h ${minutesWithoutHours}m`;
-}
-
 class TalkCard extends PureComponent {
     handlePress = () => {
         const { onPress, item } = this.props;
@@ -89,7 +76,7 @@ class TalkCard extends PureComponent {
                             {getSpeakers(item)}
                         </Text>
                         <Text style={styles.talkDuration}>
-                            {getDuration(item.duration)}
+                            {getDurationString(item.duration)}
                         </Text>
                     </View>
                 </View>
