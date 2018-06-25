@@ -2,7 +2,7 @@ import { Navigation } from 'react-native-navigation';
 import { screens, registerScreens } from './screens';
 import { getCurrentTheme } from './style/index';
 
-const { colors, fonts } = getCurrentTheme();
+const { navigatorStyle } = getCurrentTheme();
 
 registerScreens();
 
@@ -19,16 +19,5 @@ Navigation.startTabBasedApp({
             title: 'Speakers'
         }
     ],
-    appStyle: {
-        drawUnderNavBar: true,
-        navBarTranslucent: true,
-        drawUnderTabBar: true,
-        tabBarTranslucent: true,
-
-        navBarTextFontSize: fonts.header.fontSize,
-        navBarTextFontFamily: fonts.header.fontFamily,
-        navBarTextFontWeight: fonts.header.fontWeight,
-        navBarTextColor: colors.dark,
-        navBarButtonColor: colors.dark
-    }
+    appStyle: navigatorStyle
 });

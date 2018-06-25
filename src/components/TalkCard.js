@@ -4,29 +4,36 @@ import PropTypes from 'prop-types';
 import R from 'ramda';
 import config from '../config';
 import { getDurationString } from '../services/calendar';
+import { getCurrentTheme } from '../style';
+
+const { colors, fonts } = getCurrentTheme();
 
 const styles = StyleSheet.create({
     talkCard: {
         flexDirection: 'row',
-        height: 90
+        height: 88,
+        paddingLeft: 16,
+        paddingRight: 16
     },
     talkPreview: {
-        width: 120,
-        height: 90
+        width: 92,
+        height: 60
     },
     talkPreviewView: {
-        width: 120,
-        height: 90
+        width: 92,
+        height: 64,
+        marginRight: 12,
+        borderRadius: 4,
+        backgroundColor: colors.dark,
+        justifyContent: 'center'
     },
     talkNameView: {
         alignItems: 'flex-start',
         paddingLeft: 10,
         flex: 1
     },
-    talkNameText: {},
-    talkSpeakersText: {
-        fontSize: 12,
-        color: 'gray'
+    talkNameText: {
+        ...fonts.h2
     },
     talkDuration: {
         fontSize: 10,
@@ -40,11 +47,6 @@ function getVideoPreview(talk) {
         return null;
     }
     return R.replace('{0}', link)(config.youtubeThumbnail);
-}
-
-function getSpeakers(talk) {
-    const listOfNames = R.pluck('name', R.propOr('', 'speaker')(talk));
-    return R.join(',', listOfNames);
 }
 
 class TalkCard extends PureComponent {
@@ -72,9 +74,6 @@ class TalkCard extends PureComponent {
                     </View>
                     <View style={styles.talkNameView}>
                         <Text style={styles.talkNameText}>{item.name}</Text>
-                        <Text style={styles.talkSpeakersText}>
-                            {getSpeakers(item)}
-                        </Text>
                         <Text style={styles.talkDuration}>
                             {getDurationString(item.duration)}
                         </Text>
