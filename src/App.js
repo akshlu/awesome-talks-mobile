@@ -2,7 +2,7 @@ import { Navigation } from 'react-native-navigation';
 import { screens, registerScreens } from './screens';
 import { getCurrentTheme } from './style/index';
 
-const theme = getCurrentTheme();
+const { colors, fonts } = getCurrentTheme();
 
 registerScreens();
 
@@ -25,9 +25,10 @@ Navigation.startTabBasedApp({
         drawUnderTabBar: true,
         tabBarTranslucent: true,
 
-        navBarTextFontSize: theme.fonts.header.fontSize,
-        navBarTextFontFamily: theme.fonts.header.fontFamily,
-        navBarTextFontWeight: 'bold',
-        navBarTextColor: theme.colors.dark
+        navBarTextFontSize: fonts.header.fontSize,
+        navBarTextFontFamily: fonts.header.fontFamily,
+        navBarTextFontWeight: fonts.header.fontWeight,
+        navBarTextColor: colors.dark,
+        navBarButtonColor: colors.dark
     }
 });
