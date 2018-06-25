@@ -50,5 +50,10 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "rnpm": {
+    "assets": [
+      "./src/style/themes/fonts"
+    ]
   }
 }

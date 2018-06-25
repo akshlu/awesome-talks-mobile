@@ -1,5 +1,8 @@
 import { Navigation } from 'react-native-navigation';
 import { screens, registerScreens } from './screens';
+import { getCurrentTheme } from './style/index';
+
+const theme = getCurrentTheme();
 
 registerScreens();
 
@@ -17,6 +20,14 @@ Navigation.startTabBasedApp({
         }
     ],
     appStyle: {
-        largeTitle: true
+        drawUnderNavBar: true,
+        navBarTranslucent: true,
+        drawUnderTabBar: true,
+        tabBarTranslucent: true,
+
+        navBarTextFontSize: theme.fonts.header.fontSize,
+        navBarTextFontFamily: theme.fonts.header.fontFamily,
+        navBarTextFontWeight: 'bold',
+        navBarTextColor: theme.colors.dark
     }
 });

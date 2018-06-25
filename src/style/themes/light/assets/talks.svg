@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/talks copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15,20 L15,22 L21,22 C21.5522847,22 22,22.4477153 22,23 C22,23.5522847 21.5522847,24 21,24 L7,24 C6.44771525,24 6,23.5522847 6,23 C6,22.4477153 6.44771525,22 7,22 L13,22 L13,20 L1,20 C0.44771525,20 6.76353751e-17,19.5522847 0,19 L0,5 C-6.76353751e-17,4.44771525 0.44771525,4 1,4 L27,4 C27.5522847,4 28,4.44771525 28,5 L28,19 C28,19.5522847 27.5522847,20 27,20 L15,20 Z M12,9 L12,15 L18,12 L12,9 Z" id="path-1"></path>
+    </defs>
+    <g id="icons/talks-copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#2BB3CE" xlink:href="#path-1"></use>
+    </g>
+</svg>
