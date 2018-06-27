@@ -33,6 +33,13 @@ const fonts = {
     }
 };
 
+const icons = {
+    talksIconSelected: require('./light/assets/icons-toolbar/talks-24-a.png'),
+    talksIcon: require('./light/assets/icons-toolbar/talks-24-p.png'),
+    speakersIconSelected: require('./light/assets/icons-toolbar/speakers-24-a.png'),
+    speakersIcon: require('./light/assets/icons-toolbar/speakers-24-p.png')
+};
+
 const navigatorStyle = {
     drawUnderNavBar: true,
     navBarTranslucent: true,
@@ -45,11 +52,20 @@ const navigatorStyle = {
     navBarTextFontFamily: fonts.header.fontFamily,
     navBarTextFontWeight: fonts.header.fontWeight,
     navBarTextColor: colors.dark,
-    navBarButtonColor: colors.dark
+    navBarButtonColor: colors.dark,
+    tabBarSelectedButtonColor: colors.primary,
+    tabBarButtonColor: 'rgb(125, 143, 146)'
+};
+
+const tabsStyle = {
+    tabBarSelectedButtonColor: colors.primary,
+    tabBarButtonColor: 'rgb(125, 143, 146)'
 };
 
 export default {
     colors,
     fonts,
-    navigatorStyle
+    icons,
+    navigatorStyle,
+    tabsStyle
 };
