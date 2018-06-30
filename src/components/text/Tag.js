@@ -5,9 +5,9 @@ import { getCurrentTheme } from '../../style';
 const { fonts } = getCurrentTheme();
 
 const StyledText = styled.Text({
-    ...fonts.h2
+    ...fonts.tag
 });
 
-const H2 = (props) => <StyledText {...props} />;
+const Tag = (props) => <StyledText {...props} />;
 
-export default H2;
+export default Tag;

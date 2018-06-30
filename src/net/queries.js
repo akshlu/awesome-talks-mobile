@@ -37,8 +37,7 @@ export const TALKS_QUERY = gql`
             link
             duration
             description
-            speaker {
-                id
+            tags(filter: { isPublished: true }) {
                 name
             }
         }

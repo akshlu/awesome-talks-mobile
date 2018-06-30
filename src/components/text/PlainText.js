@@ -8,6 +8,6 @@ const StyledText = styled.Text({
     ...fonts.plain
 });
 
-const PlainText = (props) => <StyledText>{props.children}</StyledText>;
+const PlainText = (props) => <StyledText {...props} />;
 
 export default PlainText;

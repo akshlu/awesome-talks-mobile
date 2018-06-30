@@ -8,6 +8,6 @@ const StyledText = styled.Text({
     ...fonts.small
 });
 
-const SmallText = (props) => <StyledText>{props.children}</StyledText>;
+const SmallText = (props) => <StyledText {...props} />;
 
 export default SmallText;
