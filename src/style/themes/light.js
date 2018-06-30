@@ -43,7 +43,9 @@ const icons = {
     talksIconSelected: require('./light/assets/icons-toolbar/talks-24-a.png'),
     talksIcon: require('./light/assets/icons-toolbar/talks-24-p.png'),
     speakersIconSelected: require('./light/assets/icons-toolbar/speakers-24-a.png'),
-    speakersIcon: require('./light/assets/icons-toolbar/speakers-24-p.png')
+    speakersIcon: require('./light/assets/icons-toolbar/speakers-24-p.png'),
+    categoriesIconSelected: require('./light/assets/icons-toolbar/categories-24-a.png'),
+    categoriesIcon: require('./light/assets/icons-toolbar/categories-24-p.png')
 };
 
 const navigatorStyle = {

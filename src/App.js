@@ -21,6 +21,13 @@ Navigation.startTabBasedApp({
             title: 'Speakers',
             icon: icons.speakersIcon,
             selectedIcon: icons.speakersIconSelected
+        },
+        {
+            label: 'Categories',
+            screen: screens.CATEGORIES_SCREEN,
+            title: 'Categories',
+            icon: icons.categoriesIcon,
+            selectedIcon: icons.categoriesIconSelected
         }
     ],
     appStyle: navigatorStyle,

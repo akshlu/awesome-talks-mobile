@@ -46,3 +46,15 @@ export const TALKS_QUERY = gql`
         }
     }
 `;
+
+export const CATEGORIES_QUERY = gql`
+    {
+        allTagses(orderBy: name_ASC, filter: { isPublished: true }) {
+            id
+            name
+            _videosMeta {
+                count
+            }
+        }
+    }
+`;

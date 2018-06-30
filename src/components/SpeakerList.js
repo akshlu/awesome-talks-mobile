@@ -3,6 +3,7 @@ import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import SpeakerCard from './SpeakerCard';
 import { screens } from '../screens';
+import Separator from './list/Separator';
 
 export default class SpeakerList extends Component {
     handlePressSpeakerCard = (item) => {
@@ -29,6 +30,7 @@ export default class SpeakerList extends Component {
     render() {
         return (
             <FlatList
+                ItemSeparatorComponent={Separator}
                 data={this.props.speakersList}
                 keyExtractor={this.keyExtractor}
                 renderItem={this.renderItem}

@@ -1,10 +1,10 @@
 import R from 'ramda';
 
-function addHashTag(tag) {
+export function getHashTag(tag) {
     return '#' + tag.name.toLowerCase();
 }
 
 export function getTagsString(tags) {
-    const tagsWithHashTag = R.map(addHashTag, tags);
+    const tagsWithHashTag = R.map(getHashTag, tags);
     return R.join(' ', tagsWithHashTag);
 }
