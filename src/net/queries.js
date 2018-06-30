@@ -24,6 +24,9 @@ export const SPEAKER_QUERY = gql`
                 link
                 duration
                 description
+                tags(filter: { isPublished: true }) {
+                    name
+                }
             }
         }
     }

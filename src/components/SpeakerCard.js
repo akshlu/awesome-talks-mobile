@@ -2,24 +2,26 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import R from 'ramda';
+import H2 from './text/H2';
 
 const styles = StyleSheet.create({
     speakerCard: {
         flexDirection: 'row',
-        height: 100
+        height: 72
     },
     speakerPhotoView: {
-        width: 100,
-        height: 100
+        width: 76,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     speakerPhoto: {
-        width: 100,
-        height: 100
+        width: 48,
+        height: 48,
+        borderRadius: 24
     },
     speakerName: {
         alignItems: 'flex-start',
         justifyContent: 'center',
-        paddingLeft: 20,
         flex: 1
     }
 });
@@ -52,7 +54,7 @@ class SpeakerCard extends PureComponent {
                         )}
                     </View>
                     <View style={styles.speakerName}>
-                        <Text>{item.name}</Text>
+                        <H2>{item.name}</H2>
                     </View>
                 </View>
             </TouchableOpacity>
