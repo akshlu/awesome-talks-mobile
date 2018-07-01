@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import R from 'ramda';
 import H2 from './text/H2';
 import Avatar from './Avatar';
+import { getSpeakerPhotoUrl } from '../services/text';
 
 const styles = StyleSheet.create({
     speakerCard: {
@@ -22,10 +22,6 @@ const styles = StyleSheet.create({
     }
 });
 
-function getSpeakerPhoto(speaker) {
-    return R.pathOr(null, ['photo', 'url'])(speaker);
-}
-
 class SpeakerCard extends PureComponent {
     handlePress = () => {
         const { onPress, item } = this.props;
@@ -37,7 +33,7 @@ class SpeakerCard extends PureComponent {
 
     render() {
         const { item } = this.props;
-        const photo = getSpeakerPhoto(item);
+        const photo = getSpeakerPhotoUrl(item);
         return (
             <TouchableOpacity onPress={this.handlePress}>
                 <View style={styles.speakerCard}>

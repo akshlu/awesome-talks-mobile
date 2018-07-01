@@ -10,19 +10,22 @@ const fonts = {
     header: {
         fontFamily: 'Montserrat',
         fontSize: 20,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: colors.dark
     },
     h2: {
         fontFamily: 'Montserrat',
         fontSize: 15,
         fontWeight: '500',
-        lineHeight: 20
+        lineHeight: 20,
+        color: colors.dark
     },
     plain: {
         fontFamily: 'Montserrat',
         fontSize: 14,
         fontWeight: '500',
-        lineHeight: 22
+        lineHeight: 22,
+        color: 'rgba(40, 70, 75, 0.8)'
     },
     small: {
         fontFamily: 'Montserrat',
