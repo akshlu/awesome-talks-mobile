@@ -37,7 +37,7 @@ const TalkScreen = (props) => {
         <TalkView>
             <VideoPlayer videoId={props.item.link} />
             <TalkViewContent>
-                <Header>{props.item.name}</Header>
+                <Header>{props.item.name.trim()}</Header>
                 <TagWithMargin>{getTagsString(props.item.tags)}</TagWithMargin>
                 <Description>{props.item.description}</Description>
             </TalkViewContent>
