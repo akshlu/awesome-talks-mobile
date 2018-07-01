@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 import H2 from './text/H2';
+import Avatar from './Avatar';
 
 const styles = StyleSheet.create({
     speakerCard: {
@@ -13,11 +14,6 @@ const styles = StyleSheet.create({
         width: 76,
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    speakerPhoto: {
-        width: 48,
-        height: 48,
-        borderRadius: 24
     },
     speakerName: {
         alignItems: 'flex-start',
@@ -46,12 +42,7 @@ class SpeakerCard extends PureComponent {
             <TouchableOpacity onPress={this.handlePress}>
                 <View style={styles.speakerCard}>
                     <View style={styles.speakerPhotoView}>
-                        {photo && (
-                            <Image
-                                style={styles.speakerPhoto}
-                                source={{ uri: photo }}
-                            />
-                        )}
+                        {photo && <Avatar size={48} picture={photo} />}
                     </View>
                     <View style={styles.speakerName}>
                         <H2>{item.name}</H2>
