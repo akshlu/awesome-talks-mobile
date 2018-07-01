@@ -49,18 +49,20 @@ const icons = {
 };
 
 const navigatorStyle = {
-    drawUnderNavBar: true,
+    // drawUnderNavBar: true,
     navBarTranslucent: true,
-    drawUnderTabBar: true,
+    // drawUnderTabBar: true,
     tabBarTranslucent: true,
-    navBarNoBorder: true,
+    // navBarNoBorder: true,
 
-    navBarBackgroundColor: colors.navBarBackgroundColor,
+    // navBarBackgroundColor: colors.navBarBackgroundColor,
     navBarTextFontSize: fonts.header.fontSize,
     navBarTextFontFamily: fonts.header.fontFamily,
     navBarTextFontWeight: fonts.header.fontWeight,
+    navBarButtonFontFamily: fonts.header.fontFamily,
     navBarTextColor: colors.dark,
     navBarButtonColor: colors.dark,
+    navBarButtonFontWeight: fonts.header.fontWeight,
     tabBarSelectedButtonColor: colors.primary,
     tabBarButtonColor: 'rgb(125, 143, 146)'
 };
