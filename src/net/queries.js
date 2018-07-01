@@ -18,6 +18,12 @@ export const SPEAKER_QUERY = gql`
             id
             name
             bio
+            photo {
+                url
+            }
+            _videosesMeta {
+                count
+            }
             videoses {
                 id
                 name

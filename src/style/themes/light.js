@@ -32,7 +32,7 @@ const fonts = {
         fontSize: 11,
         fontWeight: '600',
         lineHeight: 17,
-        color: 'rgba(0.16, 0.27, 0.29, 0.6)'
+        color: 'rgba(40, 70, 75, 0.6)'
     },
     tag: {
         fontFamily: 'Montserrat',
