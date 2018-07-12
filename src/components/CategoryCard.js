@@ -5,7 +5,7 @@ import H2 from './text/H2';
 import SmallText from './text/SmallText';
 import { getHashTag } from '../services/text';
 
-const CategoryCardView = styled.View({
+const CategoryCardView = styled.TouchableOpacity({
     height: 48,
     paddingLeft: 16,
     paddingRight: 16,
@@ -17,7 +17,7 @@ const CategoryCardView = styled.View({
 export default class CategoryCard extends PureComponent {
     render() {
         return (
-            <CategoryCardView>
+            <CategoryCardView onPress={this.props.onPress}>
                 <H2>{getHashTag(this.props.item)}</H2>
                 <SmallText>{this.props.item._videosMeta.count}</SmallText>
             </CategoryCardView>

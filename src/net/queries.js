@@ -64,3 +64,5 @@ export const CATEGORIES_QUERY = gql`
         }
     }
 `;
+
+export const CATEGORY_QUERY = gql``;
