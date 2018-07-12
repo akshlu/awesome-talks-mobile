@@ -65,4 +65,19 @@ export const CATEGORIES_QUERY = gql`
     }
 `;
 
-export const CATEGORY_QUERY = gql``;
+export const CATEGORY_QUERY = gql`
+    query Tag($id: ID) {
+        Tags(id: $id) {
+            videos {
+                id
+                name
+                link
+                duration
+                description
+                tags(filter: { isPublished: true }) {
+                    name
+                }
+            }
+        }
+    }
+`;
