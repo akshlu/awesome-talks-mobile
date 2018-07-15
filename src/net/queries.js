@@ -31,6 +31,7 @@ export const SPEAKER_QUERY = gql`
                 duration
                 description
                 tags(filter: { isPublished: true }) {
+                    id
                     name
                 }
             }
@@ -46,6 +47,7 @@ export const TALKS_QUERY = gql`
             link
             duration
             tags(filter: { isPublished: true }) {
+                id
                 name
             }
         }
@@ -99,6 +101,7 @@ export const CATEGORY_QUERY = gql`
                 duration
                 description
                 tags(filter: { isPublished: true }) {
+                    id
                     name
                 }
             }
