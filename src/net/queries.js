@@ -45,9 +45,33 @@ export const TALKS_QUERY = gql`
             name
             link
             duration
-            description
             tags(filter: { isPublished: true }) {
                 name
+            }
+        }
+    }
+`;
+
+export const TALK_QUERY = gql`
+    query Video($id: ID) {
+        Videos(id: $id) {
+            id
+            name
+            link
+            duration
+            description
+            tags {
+                id
+                name
+            }
+            speaker {
+                id
+                name
+                photo {
+                    width
+                    height
+                    url
+                }
             }
         }
     }

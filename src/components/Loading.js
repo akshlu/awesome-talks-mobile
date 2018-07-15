@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ActivityIndicator, View, StyleSheet, Text } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -14,11 +15,15 @@ const styles = StyleSheet.create({
     }
 });
 
-const Loading = props => (
-    <View style={styles.loadingScreen}>
+const Loading = (props) => (
+    <View style={[styles.loadingScreen, props.style]}>
         <ActivityIndicator />
         <Text style={styles.loadingText}>Loading</Text>
     </View>
 );
+
+Loading.propTypes = {
+    style: PropTypes.any
+};
 
 export default Loading;
