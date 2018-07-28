@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
 import { ApolloProvider, Query } from 'react-apollo';
 import { getApolloClient } from '../net/graphqlClient';
 import { CATEGORY_QUERY } from '../net/queries';

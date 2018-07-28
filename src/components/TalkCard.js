@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 import config from '../config';
-import { getDurationString } from '../services/calendar';
 import { getCurrentTheme } from '../style';
 import { getTagsString } from '../services/text';
 import H2 from './text/H2';
