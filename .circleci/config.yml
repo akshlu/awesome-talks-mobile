@@ -1,0 +1,35 @@
+version: 2.0
+jobs:
+  unit_tests:
+    docker:
+      - image: circleci/node:10
+
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn install
+      - run:
+          name: Unit Tests
+          command: yarn test
+      - run:
+          name: Lint
+          command: yarn lint
+  build_ios:
+    macos:
+      xcode: "9.4.1"
+
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: yarn install
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - unit_tests
+      - build_ios:
+          requires:
+            - unit_tests
