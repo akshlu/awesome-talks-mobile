@@ -53,9 +53,9 @@ const icons = {
 };
 
 const navigatorStyle = {
-    drawUnderNavBar: true,
+    // drawUnderNavBar: true,
     navBarTranslucent: true,
-    drawUnderTabBar: true,
+    // drawUnderTabBar: true,
     tabBarTranslucent: true,
     // navBarNoBorder: true,
 
