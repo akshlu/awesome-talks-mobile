@@ -32,12 +32,14 @@ const styles = StyleSheet.create({
     },
     talkNameView: {
         alignItems: 'flex-start',
-        paddingLeft: 10,
         flex: 1
     },
     talkDuration: {
         fontSize: 10,
         color: 'gray'
+    },
+    tag: {
+        marginTop: 4
     }
 });
 
@@ -79,7 +81,11 @@ class TalkCard extends PureComponent {
                         {/* <Text style={styles.talkDuration}>
                             {getDurationString(item.duration)}
                         </Text> */}
-                        <Tag numberOfLines={1} elipzizMode="tail">
+                        <Tag
+                            style={styles.tag}
+                            numberOfLines={1}
+                            elipzizMode="tail"
+                        >
                             {getTagsString(item.tags)}
                         </Tag>
                     </View>

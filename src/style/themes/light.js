@@ -16,14 +16,14 @@ const fonts = {
     h2: {
         fontFamily: 'Montserrat',
         fontSize: 15,
-        fontWeight: '500',
+        fontWeight: '600',
         lineHeight: 20,
         color: colors.dark
     },
     plain: {
         fontFamily: 'Montserrat',
         fontSize: 14,
-        fontWeight: '500',
+        fontWeight: '600',
         lineHeight: 22,
         color: 'rgba(40, 70, 75, 0.8)'
     },
@@ -37,6 +37,7 @@ const fonts = {
     tag: {
         fontFamily: 'Montserrat',
         fontSize: 12,
+        fontWeight: '600',
         lineHeight: 17,
         color: colors.primary
     }
@@ -52,9 +53,9 @@ const icons = {
 };
 
 const navigatorStyle = {
-    // drawUnderNavBar: true,
+    drawUnderNavBar: true,
     navBarTranslucent: true,
-    // drawUnderTabBar: true,
+    drawUnderTabBar: true,
     tabBarTranslucent: true,
     // navBarNoBorder: true,
 
@@ -72,7 +73,8 @@ const navigatorStyle = {
 
 const tabsStyle = {
     tabBarSelectedButtonColor: colors.primary,
-    tabBarButtonColor: 'rgb(125, 143, 146)'
+    tabBarButtonColor: 'rgb(125, 143, 146)',
+    tabBarTextFontFamily: 'Montserrat-Medium'
 };
 
 export default {

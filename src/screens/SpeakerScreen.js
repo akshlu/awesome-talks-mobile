@@ -39,6 +39,8 @@ const SpeakerPicture = styled.Image({
 });
 
 const TalksListHeader = styled.View({
+    paddingLeft: 16,
+    paddingRight: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 9
@@ -56,13 +58,15 @@ const SpeakerDetails = (props) => {
             <SpeakerViewContent>
                 <SpeakerNameHeader>{props.item.name}</SpeakerNameHeader>
                 <Bio>{props.item.bio}</Bio>
-                {talksCount > 0 && (
-                    <TalksListHeader>
-                        <H2>Talks</H2>
-                        <SmallText>{talksCount}</SmallText>
-                    </TalksListHeader>
-                )}
             </SpeakerViewContent>
+
+            {talksCount > 0 && (
+                <TalksListHeader>
+                    <H2>Talks</H2>
+                    <SmallText>{talksCount}</SmallText>
+                </TalksListHeader>
+            )}
+
             <Separator />
             <TalkList
                 talksList={props.item.videoses}
