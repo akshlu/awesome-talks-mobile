@@ -13,6 +13,7 @@ import H2 from '../components/text/H2';
 import SmallText from '../components/text/SmallText';
 import Separator from '../components/list/Separator';
 import { getSpeakerPhotoUrl } from '../services/text';
+import Twitter from '../components/Twitter';
 
 const SpeakerView = styled.ScrollView({
     flex: 1,
@@ -26,7 +27,7 @@ const SpeakerViewContent = styled.View({
 
 const SpeakerNameHeader = styled(Header)({
     paddingTop: 36,
-    paddingBottom: 8
+    paddingBottom: 12
 });
 
 const Bio = styled(PlainText)({
@@ -57,6 +58,7 @@ const SpeakerDetails = (props) => {
             )}
             <SpeakerViewContent>
                 <SpeakerNameHeader>{props.item.name}</SpeakerNameHeader>
+                {props.item.twitter && <Twitter name={props.item.twitter} />}
                 <Bio>{props.item.bio}</Bio>
             </SpeakerViewContent>
 

@@ -18,6 +18,7 @@ export const SPEAKER_QUERY = gql`
             id
             name
             bio
+            twitter
             photo {
                 url
             }
