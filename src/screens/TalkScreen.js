@@ -11,7 +11,11 @@ import ErrorMessage from '../components/ErrorMessage';
 import Header from '../components/text/Header';
 import PlainText from '../components/text/PlainText';
 import ClickableTag from '../components/ClickableTag';
-import { getHashTag } from '../services/text';
+import Avatar from '../components/Avatar';
+import { getHashTag, getSpeakerPhotoUrl } from '../services/text';
+import { getCurrentTheme } from '../style';
+
+const { colors } = getCurrentTheme();
 
 const TalkView = styled.ScrollView({
     flex: 1,
@@ -43,6 +47,32 @@ const Description = styled(PlainText)({
     marginBottom: 24
 });
 
+const SpeakerTouchable = styled.TouchableOpacity({
+    flexDirection: 'row',
+    marginBottom: 16
+});
+
+const SpeakerNameText = styled(PlainText)({
+    color: colors.primary,
+    marginLeft: 12
+});
+
+const Speaker = (props) => {
+    const { item } = props;
+    const photo = getSpeakerPhotoUrl(item);
+    return (
+        <SpeakerTouchable onPress={props.onPress}>
+            <Avatar picture={photo} size={28} />
+            <SpeakerNameText>{item.name}</SpeakerNameText>
+        </SpeakerTouchable>
+    );
+};
+
+Speaker.propTypes = {
+    item: PropTypes.object.isRequired,
+    onPress: PropTypes.func.isRequired
+};
+
 function handleTagClick(item, navigator) {
     navigator.push({
         screen: screens.CATEGORY_SCREEN,
@@ -53,46 +83,68 @@ function handleTagClick(item, navigator) {
     });
 }
 
+function handleSpeakerClick(item, navigator) {
+    navigator.push({
+        screen: screens.SPEAKER_SCREEN,
+        passProps: {
+            item
+        }
+    });
+}
+
 const TalkScreen = (props) => {
     const { navigator } = props;
     return (
         <ApolloProvider client={getApolloClient()}>
-            <TalkView>
-                <VideoPlayer videoId={props.item.link} />
-                <TalkViewContent>
-                    <Header>{props.item.name.trim()}</Header>
-                    <TagView>
-                        {props.item.tags.map((tag) => (
-                            <Tag
-                                key={tag.id}
-                                onPress={() => handleTagClick(tag, navigator)}
-                            >
-                                {getHashTag(tag)}
-                            </Tag>
-                        ))}
-                    </TagView>
-                    <Query query={TALK_QUERY} variables={{ id: props.item.id }}>
-                        {({ loading, error, data }) => {
-                            if (loading) {
-                                return <Loading style={{ height: 200 }} />;
-                            }
-                            if (error) {
-                                return (
-                                    <ErrorMessage text="Sorry, nothing works:(" />
-                                );
-                            }
-                            if (!data.Videos) {
-                                return null;
-                            }
-                            return (
+            <Query query={TALK_QUERY} variables={{ id: props.item.id }}>
+                {({ loading, error, data }) => {
+                    if (loading) {
+                        return <Loading style={{ height: 200 }} />;
+                    }
+                    if (error) {
+                        return <ErrorMessage text="Sorry, nothing works:(" />;
+                    }
+                    if (!data.Videos) {
+                        return null;
+                    }
+                    return (
+                        <TalkView>
+                            <VideoPlayer videoId={props.item.link} />
+                            <TalkViewContent>
+                                {data.Videos.speaker.map((speaker) => (
+                                    <Speaker
+                                        key={speaker.id}
+                                        item={speaker}
+                                        onPress={() =>
+                                            handleSpeakerClick(
+                                                speaker,
+                                                navigator
+                                            )
+                                        }
+                                    />
+                                ))}
+
+                                <Header>{props.item.name.trim()}</Header>
+                                <TagView>
+                                    {props.item.tags.map((tag) => (
+                                        <Tag
+                                            key={tag.id}
+                                            onPress={() =>
+                                                handleTagClick(tag, navigator)
+                                            }
+                                        >
+                                            {getHashTag(tag)}
+                                        </Tag>
+                                    ))}
+                                </TagView>
                                 <Description>
                                     {data.Videos.description}
                                 </Description>
-                            );
-                        }}
-                    </Query>
-                </TalkViewContent>
-            </TalkView>
+                            </TalkViewContent>
+                        </TalkView>
+                    );
+                }}
+            </Query>
         </ApolloProvider>
     );
 };
