@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import SpeakerCard from './SpeakerCard';
 import { screens } from '../screens';
 import Separator from './list/Separator';
+import Footer from './list/Footer';
 
 export default class SpeakerList extends Component {
     handlePressSpeakerCard = (item) => {
@@ -27,12 +28,25 @@ export default class SpeakerList extends Component {
     };
 
     render() {
+        const { props, keyExtractor, renderItem } = this;
+        const {
+            speakersList,
+            onEndReached,
+            onPullToRefresh,
+            refreshing,
+            loadingMore
+        } = props;
         return (
             <FlatList
+                refreshing={refreshing}
+                onRefresh={onPullToRefresh}
+                ListFooterComponent={<Footer showed={loadingMore} />}
+                onEndReached={onEndReached}
+                onEndReachedThreshold={0}
                 ItemSeparatorComponent={Separator}
-                data={this.props.speakersList}
-                keyExtractor={this.keyExtractor}
-                renderItem={this.renderItem}
+                data={speakersList}
+                keyExtractor={keyExtractor}
+                renderItem={renderItem}
             />
         );
     }
@@ -40,5 +54,9 @@ export default class SpeakerList extends Component {
 
 SpeakerList.propTypes = {
     speakersList: PropTypes.array,
-    navigator: PropTypes.object.isRequired
+    navigator: PropTypes.object.isRequired,
+    refreshing: PropTypes.bool.isRequired,
+    onPullToRefresh: PropTypes.func.isRequired,
+    onEndReached: PropTypes.func.isRequired,
+    loadingMore: PropTypes.bool
 };

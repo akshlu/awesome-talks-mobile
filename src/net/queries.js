@@ -1,8 +1,11 @@
 import gql from 'graphql-tag';
+import config from '../config';
 
 export const SPEAKERS_QUERY = gql`
-    {
-        allSpeakerses(orderBy: name_ASC, filter: { isPublished: true }) {
+    query AllSpeakers($skip: Int){
+        allSpeakerses(orderBy: name_ASC, filter: { isPublished: true }, skip: $skip, first: ${
+            config.pageSize
+        }) {
             id
             name
             photo {
@@ -41,8 +44,10 @@ export const SPEAKER_QUERY = gql`
 `;
 
 export const TALKS_QUERY = gql`
-    {
-        allVideoses(orderBy: updatedAt_DESC, filter: { isPublished: true }) {
+    query AllVideos($skip: Int) {
+        allVideoses(orderBy: updatedAt_DESC,filter: { isPublished: true }, skip: $skip, first: ${
+            config.pageSize
+        }) {
             id
             name
             link
@@ -81,8 +86,10 @@ export const TALK_QUERY = gql`
 `;
 
 export const CATEGORIES_QUERY = gql`
-    {
-        allTagses(orderBy: name_ASC, filter: { isPublished: true }) {
+    query AllTags($skip: Int) {
+        allTagses(orderBy: name_ASC, filter: { isPublished: true }, skip: $skip, first: ${
+            config.pageSize
+        }) {
             id
             name
             _videosMeta {
