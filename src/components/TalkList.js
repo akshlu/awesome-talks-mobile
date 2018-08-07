@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import TalkCard from './TalkCard';
 import { screens } from '../screens';
+import Footer from './list/Footer';
 import Separator from './list/Separator';
 
-export default class TalksList extends Component {
+export default class TalksList extends React.PureComponent {
     handlePressTalkCard = (item) => {
         if (!item) {
             return;
@@ -30,12 +31,25 @@ export default class TalksList extends Component {
     };
 
     render() {
+        const { props, keyExtractor, renderItem } = this;
+        const {
+            talksList,
+            onEndReached,
+            onPullToRefresh,
+            refreshing,
+            loadingMore
+        } = props;
         return (
             <FlatList
+                refreshing={refreshing}
+                onRefresh={onPullToRefresh}
                 ItemSeparatorComponent={Separator}
-                data={this.props.talksList}
-                keyExtractor={this.keyExtractor}
-                renderItem={this.renderItem}
+                ListFooterComponent={<Footer showed={loadingMore} />}
+                onEndReached={onEndReached}
+                onEndReachedThreshold={0}
+                data={talksList}
+                keyExtractor={keyExtractor}
+                renderItem={renderItem}
             />
         );
     }
@@ -43,5 +57,9 @@ export default class TalksList extends Component {
 
 TalksList.propTypes = {
     talksList: PropTypes.array,
-    navigator: PropTypes.object.isRequired
+    navigator: PropTypes.object.isRequired,
+    onEndReached: PropTypes.func,
+    onPullToRefresh: PropTypes.func,
+    refreshing: PropTypes.bool,
+    loadingMore: PropTypes.bool
 };
