@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import TalkCard from './TalkCard';
 import { screens } from '../screens';
 import Footer from './list/Footer';
 import Separator from './list/Separator';
-import { loadMore } from '../services/loadMore';
 
 export default class TalksList extends React.PureComponent {
     handlePressTalkCard = (item) => {

@@ -26,7 +26,7 @@ export default class List extends Component {
                 refreshing={refreshing}
                 onRefresh={onPullToRefresh}
                 data={items}
-                keyExtractor={this.keyExtractor}
+                keyExtractor={keyExtractor}
                 onEndReached={onEndReached}
                 onEndReachedThreshold={0}
                 ListFooterComponent={<Footer showed={loadingMore} />}

@@ -3,9 +3,10 @@ import config from '../config';
 
 export const SPEAKERS_QUERY = gql`
     query AllSpeakers($skip: Int){
-        allSpeakerses(orderBy: name_ASC, filter: { isPublished: true }, skip: $skip, first: ${
-            config.pageSize
-        }) {
+        allSpeakerses(orderBy: name_ASC,
+                      filter: { isPublished: true },
+                      skip: $skip,
+                      first: ${config.pageSize}) {
             id
             name
             photo {
@@ -45,9 +46,10 @@ export const SPEAKER_QUERY = gql`
 
 export const TALKS_QUERY = gql`
     query AllVideos($skip: Int) {
-        allVideoses(orderBy: updatedAt_DESC,filter: { isPublished: true }, skip: $skip, first: ${
-            config.pageSize
-        }) {
+        allVideoses(orderBy: updatedAt_DESC,
+                    filter: { isPublished: true },
+                    skip: $skip,
+                    first: ${config.pageSize}) {
             id
             name
             link
@@ -87,9 +89,10 @@ export const TALK_QUERY = gql`
 
 export const CATEGORIES_QUERY = gql`
     query AllTags($skip: Int) {
-        allTagses(orderBy: name_ASC, filter: { isPublished: true }, skip: $skip, first: ${
-            config.pageSize
-        }) {
+        allTagses(orderBy: name_ASC,
+                  filter: { isPublished: true },
+                  skip: $skip,
+                  first: ${config.pageSize}) {
             id
             name
             _videosMeta {
