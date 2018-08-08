@@ -28,6 +28,13 @@ Navigation.startTabBasedApp({
             title: 'Categories',
             icon: icons.categoriesIcon,
             selectedIcon: icons.categoriesIconSelected
+        },
+        {
+            label: 'Search',
+            screen: screens.SEARCH_SCREEN,
+            title: 'Search',
+            icon: icons.searchIcon,
+            selectedIcon: icons.searchIcon
         }
     ],
     appStyle: navigatorStyle,

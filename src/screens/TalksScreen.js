@@ -4,7 +4,7 @@ import { ApolloProvider, Query } from 'react-apollo';
 import { NetworkStatus } from 'apollo-client';
 import { getApolloClient } from '../net/graphqlClient';
 import TalksList from '../components/TalkList';
-import { TALKS_QUERY } from '../net/queries';
+import { TALKS_QUERY, TALKS_QUERY_SEARCH } from '../net/queries';
 import { loadMore } from '../services/loadMore';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
@@ -12,9 +12,18 @@ import ErrorMessage from '../components/ErrorMessage';
 class TalksScreen extends React.PureComponent {
     render() {
         const { props } = this;
+        const { search } = props;
         return (
             <ApolloProvider client={getApolloClient()}>
-                <Query query={TALKS_QUERY} notifyOnNetworkStatusChange>
+                <Query
+                    query={
+                        search && search.length > 0
+                            ? TALKS_QUERY_SEARCH
+                            : TALKS_QUERY
+                    }
+                    variables={{ search }}
+                    notifyOnNetworkStatusChange
+                >
                     {({
                         loading,
                         error,
@@ -43,7 +52,9 @@ class TalksScreen extends React.PureComponent {
                                 loadingMore={
                                     networkStatus === NetworkStatus.fetchMore
                                 }
-                                refreshing={loading}
+                                refreshing={
+                                    networkStatus === NetworkStatus.refetch
+                                }
                                 onEndReached={loadMore({
                                     fetchMore,
                                     connection: data,

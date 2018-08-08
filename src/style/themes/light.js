@@ -50,7 +50,8 @@ const icons = {
     speakersIcon: require('./light/assets/icons-toolbar/speakers-24-p.png'),
     categoriesIconSelected: require('./light/assets/icons-toolbar/categories-24-a.png'),
     categoriesIcon: require('./light/assets/icons-toolbar/categories-24-p.png'),
-    twitterIcon: require('./light/assets/twitter.png')
+    twitterIcon: require('./light/assets/twitter.png'),
+    searchIcon: require('./light/assets/icons-toolbar/search-24-a.png')
 };
 
 const navigatorStyle = {
@@ -59,7 +60,6 @@ const navigatorStyle = {
     // drawUnderTabBar: true,
     tabBarTranslucent: true,
     // navBarNoBorder: true,
-
     // navBarBackgroundColor: colors.navBarBackgroundColor,
     navBarTextFontSize: fonts.header.fontSize,
     navBarTextFontFamily: fonts.header.fontFamily,
