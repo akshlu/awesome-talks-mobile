@@ -5,6 +5,7 @@ import SpeakerScreen from './SpeakerScreen';
 import SpeakersScreen from './SpeakersScreen';
 import CategoryScreen from './CategoryScreen';
 import CategoriesScreen from './CategoriesScreen';
+import SearchScreen from './SearchScreen';
 
 export const screens = {
     TALK_SCREEN: 'AwesomeTalks.TalkScreen',
@@ -12,7 +13,8 @@ export const screens = {
     SPEAKER_SCREEN: 'AwesomeTalks.SpeakerScreen',
     SPEAKERS_SCREEN: 'AwesomeTalks.SpeakersScreen',
     CATEGORY_SCREEN: 'AwesomeTalks.CategoryScreen',
-    CATEGORIES_SCREEN: 'AwesomeTalks.CategoriesScreen'
+    CATEGORIES_SCREEN: 'AwesomeTalks.CategoriesScreen',
+    SEARCH_SCREEN: 'AwesomeTalks.SearchScreen'
 };
 
 function registerScreen(screenName, screenComponent) {
@@ -26,4 +28,5 @@ export function registerScreens() {
     registerScreen(screens.SPEAKERS_SCREEN, SpeakersScreen);
     registerScreen(screens.CATEGORY_SCREEN, CategoryScreen);
     registerScreen(screens.CATEGORIES_SCREEN, CategoriesScreen);
+    registerScreen(screens.SEARCH_SCREEN, SearchScreen);
 }

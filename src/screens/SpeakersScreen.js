@@ -4,14 +4,18 @@ import { ApolloProvider, Query } from 'react-apollo';
 import { NetworkStatus } from 'apollo-client';
 import { getApolloClient } from '../net/graphqlClient';
 import SpeakerList from '../components/SpeakerList';
-import { SPEAKERS_QUERY } from '../net/queries';
+import { SPEAKERS_QUERY, SPEAKERS_QUERY_SEARCH } from '../net/queries';
 import { loadMore } from '../services/loadMore';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
 
 const SpeakersScreen = (props) => (
     <ApolloProvider client={getApolloClient()}>
-        <Query query={SPEAKERS_QUERY} notifyOnNetworkStatusChange>
+        <Query
+            query={props.search ? SPEAKERS_QUERY_SEARCH : SPEAKERS_QUERY}
+            variables={{ search: props.search }}
+            notifyOnNetworkStatusChange
+        >
             {({ loading, error, data, fetchMore, refetch, networkStatus }) => {
                 if (
                     loading &&
@@ -29,7 +33,7 @@ const SpeakersScreen = (props) => (
                 return (
                     <SpeakerList
                         loadingMore={networkStatus === NetworkStatus.fetchMore}
-                        refreshing={loading}
+                        refreshing={networkStatus === NetworkStatus.refetch}
                         onEndReached={loadMore({
                             fetchMore,
                             connection: data,
@@ -46,7 +50,8 @@ const SpeakersScreen = (props) => (
 );
 
 SpeakersScreen.propTypes = {
-    navigator: PropTypes.object.isRequired
+    navigator: PropTypes.object.isRequired,
+    search: PropTypes.string
 };
 
 export default SpeakersScreen;

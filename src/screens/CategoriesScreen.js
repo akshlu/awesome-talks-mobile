@@ -4,7 +4,7 @@ import { ApolloProvider, Query } from 'react-apollo';
 import { NetworkStatus } from 'apollo-client';
 import { getApolloClient } from '../net/graphqlClient';
 import List from '../components/list/List';
-import { CATEGORIES_QUERY } from '../net/queries';
+import { CATEGORIES_QUERY, CATEGORIES_QUERY_SEARCH } from '../net/queries';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
 import CategoryCard from '../components/CategoryCard';
@@ -37,9 +37,15 @@ export default class CategoriesScreen extends React.PureComponent {
     }
 
     render() {
+        const { search } = this.props;
+        const query = search ? CATEGORIES_QUERY_SEARCH : CATEGORIES_QUERY;
         return (
             <ApolloProvider client={getApolloClient()}>
-                <Query query={CATEGORIES_QUERY} notifyOnNetworkStatusChange>
+                <Query
+                    query={query}
+                    variables={{ search }}
+                    notifyOnNetworkStatusChange
+                >
                     {({
                         loading,
                         error,
@@ -69,7 +75,9 @@ export default class CategoriesScreen extends React.PureComponent {
                                 loadingMore={
                                     networkStatus === NetworkStatus.fetchMore
                                 }
-                                refreshing={loading}
+                                refreshing={
+                                    networkStatus === NetworkStatus.refetch
+                                }
                                 onPullToRefresh={refetch}
                                 onEndReached={loadMore({
                                     fetchMore,
@@ -87,5 +95,6 @@ export default class CategoriesScreen extends React.PureComponent {
 }
 
 CategoriesScreen.propTypes = {
-    navigator: PropTypes.object.isRequired
+    navigator: PropTypes.object.isRequired,
+    search: PropTypes.string
 };

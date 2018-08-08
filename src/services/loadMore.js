@@ -13,9 +13,10 @@ export function loadMore({ connection, fetchMore, fieldname, debounce }) {
                 skip
             },
             updateQuery: (previousResult, { fetchMoreResult }) => {
+                if (!fetchMoreResult) return previousResult;
                 const data = fetchMoreResult[fieldname];
 
-                if (!fetchMoreResult || !data) return previousResult;
+                if (!data) return previousResult;
                 return {
                     __typename: previousResult.__typename,
                     [fieldname]: [...previousResult[fieldname], ...data]
