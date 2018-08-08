@@ -136,6 +136,7 @@ class SearchScreen extends React.PureComponent {
                         return (
                             <SectionList
                                 keyboardShouldPersistTaps="always"
+                                keyboardDismissMode="on-drag"
                                 renderSectionHeader={this.renderSectionHeader}
                                 keyExtractor={(item) => item.id}
                                 sections={[
