@@ -80,7 +80,6 @@ class SearchScreen extends React.PureComponent {
 
     cancel() {
         this.blur();
-        this.setState({ search: '' });
     }
 
     renderTalk = ({ item }) => (
