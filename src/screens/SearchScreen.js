@@ -8,9 +8,7 @@ import {
     SectionList
 } from 'react-native';
 import PropTypes from 'prop-types';
-import Loading from '../components/Loading';
 import SearchBar from '../components/SearchBar';
-import ErrorMessage from '../components/ErrorMessage';
 import TalkCard from '../components/TalkCard';
 import SpeakerCard from '../components/SpeakerCard';
 import CategoryCard from '../components/CategoryCard';
@@ -20,6 +18,7 @@ import { getApolloClient } from '../net/graphqlClient';
 import { SEARCH_QUERY } from '../net/queries';
 import { screens } from '../screens';
 import EmptySearch from '../components/EmptySearch';
+import nonIdealState from '../hoc/nonIdealState';
 
 class SearchScreen extends React.PureComponent {
     state = { search: '', focused: false };
@@ -117,51 +116,44 @@ class SearchScreen extends React.PureComponent {
             />
         );
 
+    renderResult = ({ data }) => {
+        return (
+            <SectionList
+                keyboardShouldPersistTaps="always"
+                keyboardDismissMode="on-drag"
+                renderSectionHeader={this.renderSectionHeader}
+                keyExtractor={(item) => item.id}
+                sections={[
+                    {
+                        title: 'Talks',
+                        key: 'talks',
+                        data: data.allVideoses,
+                        renderItem: this.renderTalk
+                    },
+                    {
+                        title: 'Speakers',
+                        key: 'speakers',
+                        data: data.allSpeakerses,
+                        renderItem: this.renderSpeaker
+                    },
+                    {
+                        title: 'Categories',
+                        key: 'categories',
+                        data: data.allTagses,
+                        renderItem: this.renderCategory
+                    }
+                ]}
+            />
+        );
+    };
+
     renderContent = () => {
         const { state } = this;
         const { search } = state;
         return (
             <ApolloProvider client={getApolloClient()}>
                 <Query query={SEARCH_QUERY} variables={{ search }}>
-                    {({ data, loading, error }) => {
-                        if (loading) {
-                            return <Loading />;
-                        }
-                        if (error) {
-                            return (
-                                <ErrorMessage text="Sorry, nothing works:(" />
-                            );
-                        }
-
-                        return (
-                            <SectionList
-                                keyboardShouldPersistTaps="always"
-                                keyboardDismissMode="on-drag"
-                                renderSectionHeader={this.renderSectionHeader}
-                                keyExtractor={(item) => item.id}
-                                sections={[
-                                    {
-                                        title: 'Talks',
-                                        key: 'talks',
-                                        data: data.allVideoses,
-                                        renderItem: this.renderTalk
-                                    },
-                                    {
-                                        title: 'Speakers',
-                                        key: 'speakers',
-                                        data: data.allSpeakerses,
-                                        renderItem: this.renderSpeaker
-                                    },
-                                    {
-                                        title: 'Categories',
-                                        key: 'categories',
-                                        data: data.allTagses,
-                                        renderItem: this.renderCategory
-                                    }
-                                ]}
-                            />
-                        );
-                    }}
+                    {nonIdealState.call(this, this.renderResult)}
                 </Query>
             </ApolloProvider>
         );

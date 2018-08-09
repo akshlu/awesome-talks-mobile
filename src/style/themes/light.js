@@ -51,7 +51,9 @@ const icons = {
     categoriesIconSelected: require('./light/assets/icons-toolbar/categories-24-a.png'),
     categoriesIcon: require('./light/assets/icons-toolbar/categories-24-p.png'),
     twitterIcon: require('./light/assets/twitter.png'),
-    searchIcon: require('./light/assets/icons-toolbar/search-24-a.png')
+    searchIcon: require('./light/assets/icons-toolbar/search-24-a.png'),
+    serverError: require('./light/assets/server-error.png'),
+    noInternet: require('./light/assets/no-internet.png')
 };
 
 const navigatorStyle = {
