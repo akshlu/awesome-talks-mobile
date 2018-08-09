@@ -16,6 +16,12 @@ export const SPEAKERS_QUERY = gql`
     }
 `;
 
+export const NET_INFO = gql`
+    query NetInfo {
+        isConnected @client
+    }
+`;
+
 export const SPEAKERS_QUERY_SEARCH = gql`
     query AllSpeakers($skip: Int, $search: String){
         allSpeakerses(orderBy: name_ASC,

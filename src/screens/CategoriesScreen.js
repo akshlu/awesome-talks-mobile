@@ -5,8 +5,7 @@ import { NetworkStatus } from 'apollo-client';
 import { getApolloClient } from '../net/graphqlClient';
 import List from '../components/list/List';
 import { CATEGORIES_QUERY, CATEGORIES_QUERY_SEARCH } from '../net/queries';
-import Loading from '../components/Loading';
-import ErrorMessage from '../components/ErrorMessage';
+import nonIdealState from '../hoc/nonIdealState';
 import CategoryCard from '../components/CategoryCard';
 import { loadMore } from '../services/loadMore';
 import { screens } from '../screens';
@@ -36,6 +35,23 @@ export default class CategoriesScreen extends React.PureComponent {
         );
     }
 
+    renderContent({ data, networkStatus, refetch, fetchMore }) {
+        return (
+            <List
+                items={data.allTagses}
+                loadingMore={networkStatus === NetworkStatus.fetchMore}
+                refreshing={networkStatus === NetworkStatus.refetch}
+                onPullToRefresh={refetch}
+                onEndReached={loadMore({
+                    fetchMore,
+                    connection: data,
+                    fieldname: 'allTagses'
+                })}
+                renderItem={this.renderItem}
+            />
+        );
+    }
+
     render() {
         const { search } = this.props;
         const query = search ? CATEGORIES_QUERY_SEARCH : CATEGORIES_QUERY;
@@ -46,48 +62,7 @@ export default class CategoriesScreen extends React.PureComponent {
                     variables={{ search }}
                     notifyOnNetworkStatusChange
                 >
-                    {({
-                        loading,
-                        error,
-                        data,
-                        fetchMore,
-                        refetch,
-                        networkStatus
-                    }) => {
-                        if (
-                            loading &&
-                            networkStatus !== NetworkStatus.fetchMore &&
-                            networkStatus !== NetworkStatus.refetch
-                        ) {
-                            return <Loading />;
-                        }
-                        if (error) {
-                            return (
-                                <ErrorMessage text="Sorry, nothing works:(" />
-                            );
-                        }
-                        if (!data.allTagses) {
-                            return null;
-                        }
-                        return (
-                            <List
-                                items={data.allTagses}
-                                loadingMore={
-                                    networkStatus === NetworkStatus.fetchMore
-                                }
-                                refreshing={
-                                    networkStatus === NetworkStatus.refetch
-                                }
-                                onPullToRefresh={refetch}
-                                onEndReached={loadMore({
-                                    fetchMore,
-                                    connection: data,
-                                    fieldname: 'allTagses'
-                                })}
-                                renderItem={this.renderItem}
-                            />
-                        );
-                    }}
+                    {nonIdealState.call(this, this.renderContent.bind(this))}
                 </Query>
             </ApolloProvider>
         );

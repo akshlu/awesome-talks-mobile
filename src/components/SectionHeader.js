@@ -17,7 +17,7 @@ class SectionHeader extends PureComponent {
             <TouchableOpacity onPress={this.props.onPress}>
                 <View style={styles.container}>
                     <H2>{this.props.title}</H2>
-                    <SmallText>Show All</SmallText>
+                    <SmallText color={theme.colors.primary}>Show All</SmallText>
                 </View>
             </TouchableOpacity>
         );

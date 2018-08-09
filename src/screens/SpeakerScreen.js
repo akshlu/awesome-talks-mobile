@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { ApolloProvider, Query } from 'react-apollo';
 import { getApolloClient } from '../net/graphqlClient';
 import { SPEAKER_QUERY } from '../net/queries';
-import Loading from '../components/Loading';
-import ErrorMessage from '../components/ErrorMessage';
 import TalkList from '../components/TalkList';
 import styled from 'styled-components';
 import PlainText from '../components/text/PlainText';
@@ -14,6 +12,7 @@ import SmallText from '../components/text/SmallText';
 import Separator from '../components/list/Separator';
 import { getSpeakerPhotoUrl } from '../services/text';
 import Twitter from '../components/Twitter';
+import nonIdealState from '../hoc/nonIdealState';
 
 const SpeakerView = styled.ScrollView({
     flex: 1,
@@ -83,29 +82,27 @@ SpeakerDetails.propTypes = {
     navigator: PropTypes.object.isRequired
 };
 
-const SpeakerScreen = (props) => (
-    <ApolloProvider client={getApolloClient()}>
-        <Query query={SPEAKER_QUERY} variables={{ id: props.item.id }}>
-            {({ loading, error, data }) => {
-                if (loading) {
-                    return <Loading />;
-                }
-                if (error) {
-                    return <ErrorMessage text="Sorry, nothing works:(" />;
-                }
-                if (!data.Speakers) {
-                    return null;
-                }
-                return (
-                    <SpeakerDetails
-                        item={data.Speakers}
-                        navigator={props.navigator}
-                    />
-                );
-            }}
-        </Query>
-    </ApolloProvider>
-);
+class SpeakerScreen extends React.PureComponent {
+    renderContent({ data, networkStatus, fetchMore, refetch, loading }) {
+        const { props } = this;
+        return (
+            <SpeakerDetails item={data.Speakers} navigator={props.navigator} />
+        );
+    }
+
+    render() {
+        return (
+            <ApolloProvider client={getApolloClient()}>
+                <Query
+                    query={SPEAKER_QUERY}
+                    variables={{ id: this.props.item.id }}
+                >
+                    {nonIdealState.call(this, this.renderContent.bind(this))}
+                </Query>
+            </ApolloProvider>
+        );
+    }
+}
 
 SpeakerScreen.propTypes = {
     item: PropTypes.object.isRequired,

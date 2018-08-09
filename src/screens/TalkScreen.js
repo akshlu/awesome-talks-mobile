@@ -6,14 +6,13 @@ import { ApolloProvider, Query } from 'react-apollo';
 import { getApolloClient } from '../net/graphqlClient';
 import { screens } from '../screens';
 import { TALK_QUERY } from '../net/queries';
-import Loading from '../components/Loading';
-import ErrorMessage from '../components/ErrorMessage';
 import Header from '../components/text/Header';
 import PlainText from '../components/text/PlainText';
 import ClickableTag from '../components/ClickableTag';
 import Avatar from '../components/Avatar';
 import { getHashTag, getSpeakerPhotoUrl } from '../services/text';
 import { getCurrentTheme } from '../style';
+import nonIdealState from '../hoc/nonIdealState';
 
 const { colors } = getCurrentTheme();
 
@@ -92,62 +91,52 @@ function handleSpeakerClick(item, navigator) {
     });
 }
 
-const TalkScreen = (props) => {
-    const { navigator } = props;
-    return (
-        <ApolloProvider client={getApolloClient()}>
-            <Query query={TALK_QUERY} variables={{ id: props.item.id }}>
-                {({ loading, error, data }) => {
-                    if (loading) {
-                        return <Loading style={{ height: 200 }} />;
-                    }
-                    if (error) {
-                        return <ErrorMessage text="Sorry, nothing works:(" />;
-                    }
-                    if (!data.Videos) {
-                        return null;
-                    }
-                    return (
-                        <TalkView>
-                            <VideoPlayer videoId={props.item.link} />
-                            <TalkViewContent>
-                                {data.Videos.speaker.map((speaker) => (
-                                    <Speaker
-                                        key={speaker.id}
-                                        item={speaker}
-                                        onPress={() =>
-                                            handleSpeakerClick(
-                                                speaker,
-                                                navigator
-                                            )
-                                        }
-                                    />
-                                ))}
+class TalkScreen extends React.PureComponent {
+    renderContent({ data, networkStatus, fetchMore, refetch, loading }) {
+        const { props } = this;
+        return (
+            <TalkView>
+                <VideoPlayer videoId={props.item.link} />
+                <TalkViewContent>
+                    {data.Videos.speaker.map((speaker) => (
+                        <Speaker
+                            key={speaker.id}
+                            item={speaker}
+                            onPress={() =>
+                                handleSpeakerClick(speaker, navigator)
+                            }
+                        />
+                    ))}
 
-                                <Header>{props.item.name.trim()}</Header>
-                                <TagView>
-                                    {props.item.tags.map((tag) => (
-                                        <Tag
-                                            key={tag.id}
-                                            onPress={() =>
-                                                handleTagClick(tag, navigator)
-                                            }
-                                        >
-                                            {getHashTag(tag)}
-                                        </Tag>
-                                    ))}
-                                </TagView>
-                                <Description>
-                                    {data.Videos.description}
-                                </Description>
-                            </TalkViewContent>
-                        </TalkView>
-                    );
-                }}
-            </Query>
-        </ApolloProvider>
-    );
-};
+                    <Header>{props.item.name.trim()}</Header>
+                    <TagView>
+                        {props.item.tags.map((tag) => (
+                            <Tag
+                                key={tag.id}
+                                onPress={() => handleTagClick(tag, navigator)}
+                            >
+                                {getHashTag(tag)}
+                            </Tag>
+                        ))}
+                    </TagView>
+                    <Description>{data.Videos.description}</Description>
+                </TalkViewContent>
+            </TalkView>
+        );
+    }
+
+    render() {
+        const { props } = this;
+
+        return (
+            <ApolloProvider client={getApolloClient()}>
+                <Query query={TALK_QUERY} variables={{ id: props.item.id }}>
+                    {nonIdealState.call(this, this.renderContent.bind(this))}
+                </Query>
+            </ApolloProvider>
+        );
+    }
+}
 
 TalkScreen.propTypes = {
     item: PropTypes.object.isRequired,
