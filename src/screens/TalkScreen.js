@@ -94,6 +94,7 @@ function handleSpeakerClick(item, navigator) {
 class TalkScreen extends React.PureComponent {
     renderContent({ data, networkStatus, fetchMore, refetch, loading }) {
         const { props } = this;
+        const { navigator } = props;
         return (
             <TalkView>
                 <VideoPlayer videoId={props.item.link} />
