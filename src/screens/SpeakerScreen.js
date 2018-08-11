@@ -83,7 +83,8 @@ const SpeakerDetails = (props) => {
 
 SpeakerDetails.propTypes = {
     item: PropTypes.object.isRequired,
-    navigator: PropTypes.object.isRequired
+    navigator: PropTypes.object.isRequired,
+    networkStatus: PropTypes.string.isRequired
 };
 
 class SpeakerScreen extends React.PureComponent {
