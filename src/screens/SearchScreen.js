@@ -19,6 +19,7 @@ import { SEARCH_QUERY } from '../net/queries';
 import { screens } from '../screens';
 import EmptySearch from '../components/EmptySearch';
 import nonIdealState from '../hoc/nonIdealState';
+import Separator from '../components/list/Separator';
 
 class SearchScreen extends React.PureComponent {
     state = { search: '', focused: false };
@@ -121,6 +122,7 @@ class SearchScreen extends React.PureComponent {
             <SectionList
                 keyboardShouldPersistTaps="always"
                 keyboardDismissMode="on-drag"
+                ItemSeparatorComponent={Separator}
                 renderSectionHeader={this.renderSectionHeader}
                 keyExtractor={(item) => item.id}
                 sections={[
