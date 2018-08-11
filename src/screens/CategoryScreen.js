@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ApolloProvider, Query } from 'react-apollo';
 import { getApolloClient } from '../net/graphqlClient';
 import { CATEGORY_QUERY } from '../net/queries';
+import { NetworkStatus } from 'apollo-client';
 import nonIdealState from '../hoc/nonIdealState';
 import TalkList from '../components/TalkList';
 
@@ -13,6 +14,8 @@ class CategoryScreen extends React.PureComponent {
             <TalkList
                 talksList={data.Tags.videos}
                 navigator={props.navigator}
+                refreshing={props.networkStatus === NetworkStatus.refetch}
+                loadingMore={props.networkStatus === NetworkStatus.fetchMore}
             />
         );
     }

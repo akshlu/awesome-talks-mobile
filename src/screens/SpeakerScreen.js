@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ApolloProvider, Query } from 'react-apollo';
 import { getApolloClient } from '../net/graphqlClient';
+import { NetworkStatus } from 'apollo-client';
 import { SPEAKER_QUERY } from '../net/queries';
 import TalkList from '../components/TalkList';
 import styled from 'styled-components';
@@ -47,8 +48,9 @@ const TalksListHeader = styled.View({
 });
 
 const SpeakerDetails = (props) => {
-    const speakerPicture = getSpeakerPhotoUrl(props.item);
-    const talksCount = props.item._videosesMeta.count;
+    const { networkStatus, item, navigator } = props;
+    const speakerPicture = getSpeakerPhotoUrl(item);
+    const talksCount = item._videosesMeta.count;
 
     return (
         <SpeakerView>
@@ -56,9 +58,9 @@ const SpeakerDetails = (props) => {
                 <SpeakerPicture source={{ uri: speakerPicture }} />
             )}
             <SpeakerViewContent>
-                <SpeakerNameHeader>{props.item.name}</SpeakerNameHeader>
-                {props.item.twitter && <Twitter name={props.item.twitter} />}
-                <Bio>{props.item.bio}</Bio>
+                <SpeakerNameHeader>{item.name}</SpeakerNameHeader>
+                {item.twitter && <Twitter name={item.twitter} />}
+                <Bio>{item.bio}</Bio>
             </SpeakerViewContent>
 
             {talksCount > 0 && (
@@ -70,8 +72,10 @@ const SpeakerDetails = (props) => {
 
             <Separator />
             <TalkList
-                talksList={props.item.videoses}
-                navigator={props.navigator}
+                talksList={item.videoses}
+                navigator={navigator}
+                refreshing={networkStatus === NetworkStatus.refetch}
+                loadingMore={networkStatus === NetworkStatus.fetchMore}
             />
         </SpeakerView>
     );
@@ -86,7 +90,11 @@ class SpeakerScreen extends React.PureComponent {
     renderContent({ data, networkStatus, fetchMore, refetch, loading }) {
         const { props } = this;
         return (
-            <SpeakerDetails item={data.Speakers} navigator={props.navigator} />
+            <SpeakerDetails
+                item={data.Speakers}
+                networkStatus={networkStatus}
+                navigator={props.navigator}
+            />
         );
     }
 

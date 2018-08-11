@@ -92,7 +92,10 @@ class SearchBar extends React.PureComponent {
                 <View
                     style={[
                         styles.inputContainer,
-                        !hasFocus ? { marginRight: 15 } : null
+                        !hasFocus
+                            ? { marginRight: 15, width: SCREEN_WIDTH - 32 }
+                            : null,
+                        { flex: !hasFocus ? 0 : 1 }
                     ]}
                 >
                     {SearchIcon}
@@ -108,9 +111,7 @@ class SearchBar extends React.PureComponent {
                         clearButtonMode="always"
                     />
                 </View>
-                {state.hasFocus && (
-                    <Button title="Cancel" onPress={this.cancel} />
-                )}
+                <Button title="Cancel" onPress={this.cancel} />
             </View>
         );
     }
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
         width: SCREEN_WIDTH,
         backgroundColor: '#f5f5f5',
         paddingBottom: 13,
-        paddingTop: 13 + 20,
+        paddingTop: 33,
         flexDirection: 'row'
     },
     input: {
