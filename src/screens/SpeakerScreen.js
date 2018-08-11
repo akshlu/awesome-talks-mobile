@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dimensions, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { ApolloProvider, Query } from 'react-apollo';
 import { getApolloClient } from '../net/graphqlClient';
@@ -35,10 +36,6 @@ const Bio = styled(PlainText)({
     marginBottom: 24
 });
 
-const SpeakerPicture = styled.Image({
-    height: 200
-});
-
 const TalksListHeader = styled.View({
     paddingLeft: 16,
     paddingRight: 16,
@@ -55,7 +52,10 @@ const SpeakerDetails = (props) => {
     return (
         <SpeakerView>
             {speakerPicture && (
-                <SpeakerPicture source={{ uri: speakerPicture }} />
+                <Image
+                    source={{ uri: speakerPicture }}
+                    style={{ height: Dimensions.get('window').height / 3 }}
+                />
             )}
             <SpeakerViewContent>
                 <SpeakerNameHeader>{item.name}</SpeakerNameHeader>

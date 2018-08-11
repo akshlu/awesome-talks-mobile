@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Dimensions } from 'react-native';
 import YouTubePlayer from 'react-native-youtube';
 import styled from 'styled-components';
 import { ApolloProvider, Query } from 'react-apollo';
@@ -26,11 +27,11 @@ const TalkViewContent = styled.View({
     paddingRight: 20
 });
 
-const VideoPlayer = styled(YouTubePlayer)({
-    alignSelf: 'stretch',
-    height: 200,
-    marginBottom: 36
-});
+const VideoPlayer = styled(YouTubePlayer)`
+    align-self: stretch;
+    height: ${(props) => props.height};
+    margin-bottom: 36;
+`;
 
 const TagView = styled.View({
     marginTop: 8,
@@ -97,7 +98,10 @@ class TalkScreen extends React.PureComponent {
         const { navigator } = props;
         return (
             <TalkView>
-                <VideoPlayer videoId={props.item.link} />
+                <VideoPlayer
+                    videoId={props.item.link}
+                    height={Dimensions.get('window').height / 3}
+                />
                 <TalkViewContent>
                     {data.Videos.speaker.map((speaker) => (
                         <Speaker

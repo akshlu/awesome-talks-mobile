@@ -23,7 +23,7 @@ const fonts = {
     plain: {
         fontFamily: 'Montserrat',
         fontSize: 14,
-        fontWeight: '600',
+        fontWeight: '500',
         lineHeight: 22,
         color: 'rgba(40, 70, 75, 0.8)'
     },
