@@ -1,6 +1,8 @@
 # Awesome Talks Mobile App
 [![CircleCI](https://circleci.com/gh/akshlu/awesome-talks-mobile/tree/master.svg?style=svg)](https://circleci.com/gh/akshlu/awesome-talks-mobile/tree/master)
 
+[![Download on the AppStore](https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg)](https://itunes.apple.com/us/app/awesome-talks/id1394086097?mt=8)
+
 React Native application for Awesome Talks from [Sara Vieira](https://github.com/SaraVieira)
 
 ## What?
