@@ -24,3 +24,7 @@ yarn run-ios
 ```sh
 yarn run-android
 ```
+## Contributors
+* [Alexey Ustinov](https://github.com/akshlu) - code
+* [Max Artemyev](https://github.com/sichacvah) - design, code
+* [Sergey Kurochkin](https://github.com/maxarta) - code
