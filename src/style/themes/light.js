@@ -71,7 +71,10 @@ const navigatorStyle = {
     navBarButtonColor: colors.dark,
     navBarButtonFontWeight: fonts.header.fontWeight,
     tabBarSelectedButtonColor: colors.primary,
-    tabBarButtonColor: 'rgb(125, 143, 146)'
+    tabBarButtonColor: 'rgb(125, 143, 146)',
+
+    // Android only
+    forceTitlesDisplay: true
 };
 
 const tabsStyle = {
