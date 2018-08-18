@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 import YouTubePlayer from 'react-native-youtube';
 import styled from 'styled-components';
 import { ApolloProvider, Query } from 'react-apollo';
@@ -100,10 +100,12 @@ class TalkScreen extends React.PureComponent {
         const { navigator } = props;
         return (
             <TalkView>
-                <VideoPlayer
-                    videoId={props.item.link}
-                    height={Dimensions.get('window').height / 3}
-                />
+                {Platform.os === 'android' ? (
+                    <VideoPlayer
+                        videoId={props.item.link}
+                        height={Dimensions.get('window').height / 3}
+                    />
+                ) : null}
                 <TalkViewContent>
                     {data.Videos.speaker.map((speaker) => (
                         <Speaker
