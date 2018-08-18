@@ -37,6 +37,7 @@ class SearchScreen extends React.PureComponent {
             navigatorStyle: {
                 largeTitle: false
             },
+            animationType: 'slide-horizontal',
             passProps: {
                 item
             }
@@ -56,6 +57,7 @@ class SearchScreen extends React.PureComponent {
             navigatorStyle: {
                 largeTitle: false
             },
+            animationType: 'slide-horizontal',
             passProps: {
                 search
             }

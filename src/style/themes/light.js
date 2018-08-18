@@ -72,6 +72,7 @@ const navigatorStyle = {
     navBarButtonFontWeight: fonts.header.fontWeight,
     tabBarSelectedButtonColor: colors.primary,
     tabBarButtonColor: 'rgb(125, 143, 146)',
+    screenBackgroundColor: 'white',
 
     // Android only
     forceTitlesDisplay: true

@@ -22,7 +22,8 @@ export default class CategoriesScreen extends React.PureComponent {
         this.props.navigator.push({
             screen: screens.CATEGORY_SCREEN,
             passProps: { item },
-            title: getHashTag(item)
+            title: getHashTag(item),
+            animationType: 'slide-horizontal'
         });
     }
 

@@ -16,6 +16,7 @@ export default class TalksList extends React.PureComponent {
             navigatorStyle: {
                 largeTitle: false
             },
+            animationType: 'slide-horizontal',
             passProps: {
                 item
             }

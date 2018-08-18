@@ -79,6 +79,7 @@ function handleTagClick(item, navigator) {
         passProps: {
             item
         },
+        animationType: 'slide-horizontal',
         title: getHashTag(item)
     });
 }
@@ -88,7 +89,8 @@ function handleSpeakerClick(item, navigator) {
         screen: screens.SPEAKER_SCREEN,
         passProps: {
             item
-        }
+        },
+        animationType: 'slide-horizontal'
     });
 }
 
