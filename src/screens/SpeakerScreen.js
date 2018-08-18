@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dimensions, Image } from 'react-native';
 import PropTypes from 'prop-types';
+import R from 'ramda';
 import { ApolloProvider, Query } from 'react-apollo';
 import { getApolloClient } from '../net/graphqlClient';
 import { NetworkStatus } from 'apollo-client';
@@ -59,7 +60,9 @@ const SpeakerDetails = (props) => {
             )}
             <SpeakerViewContent>
                 <SpeakerNameHeader>{item.name}</SpeakerNameHeader>
-                {item.twitter && <Twitter name={item.twitter} />}
+                {R.not(R.isEmpty(item.twitter) || R.isNil(item.twitter)) && (
+                    <Twitter name={item.twitter} />
+                )}
                 <Bio>{item.bio}</Bio>
             </SpeakerViewContent>
 
