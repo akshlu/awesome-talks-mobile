@@ -9,9 +9,6 @@ const StyledView = styled.View`
     background-color: ${colors.greyTransparent08};
     border-radius: 4px;
     padding: 1px 4px 1px 4px;
-    position: absolute;
-    right: 4px;
-    bottom: 4px;
 `;
 
 const StyledText = styled.Text({

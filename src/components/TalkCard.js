@@ -71,7 +71,15 @@ class TalkCard extends PureComponent {
                                 source={{ uri: preview }}
                             />
                         )}
-                        <Duration>{getDurationString(item.duration)}</Duration>
+                        <Duration
+                            style={{
+                                position: 'absolute',
+                                right: 4,
+                                bottom: 4
+                            }}
+                        >
+                            {getDurationString(item.duration)}
+                        </Duration>
                     </View>
                     <View style={styles.talkNameView}>
                         <H2 numberOfLines={2} elipzizMode="tail">

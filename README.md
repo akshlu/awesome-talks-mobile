@@ -28,3 +28,4 @@ yarn run-android
 * [Alexey Ustinov](https://github.com/akshlu) - code
 * [Max Artemyev](https://github.com/maxarta) - design, code
 * [Sergey Kurochkin](https://github.com/sichacvah) - code
+* [Nikolai](https://github.com/nikolai56) - code
