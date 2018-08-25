@@ -8,7 +8,8 @@ import { getCurrentTheme } from '../style';
 const { colors, icons } = getCurrentTheme();
 
 const TwitterTouchable = styled.TouchableOpacity({
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingTop: 8
 });
 
 const TwitterNameText = styled(PlainText)({

@@ -28,8 +28,7 @@ const SpeakerViewContent = styled.View({
 });
 
 const SpeakerNameHeader = styled(Header)({
-    paddingTop: 36,
-    paddingBottom: 12
+    paddingTop: 36
 });
 
 const Bio = styled(PlainText)({
