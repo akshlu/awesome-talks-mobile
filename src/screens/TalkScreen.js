@@ -7,11 +7,13 @@ import { ApolloProvider, Query } from 'react-apollo';
 import { getApolloClient } from '../net/graphqlClient';
 import { screens } from '../screens';
 import { TALK_QUERY } from '../net/queries';
+import Duration from '../components/text/Duration';
 import Header from '../components/text/Header';
 import PlainText from '../components/text/PlainText';
 import ClickableTag from '../components/ClickableTag';
 import Avatar from '../components/Avatar';
 import { getHashTag, getSpeakerPhotoUrl } from '../services/text';
+import { getDurationString } from '../services/calendar';
 import { getCurrentTheme } from '../style';
 import nonIdealState from '../hoc/nonIdealState';
 
@@ -93,6 +95,11 @@ function handleSpeakerClick(item, navigator) {
 }
 
 class TalkScreen extends React.PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.state = { shouldShowDuration: true };
+    }
     renderContent({ data, networkStatus, fetchMore, refetch, loading }) {
         const { props } = this;
         const { navigator } = props;
@@ -101,7 +108,21 @@ class TalkScreen extends React.PureComponent {
                 <VideoPlayer
                     videoId={props.item.link}
                     height={Dimensions.get('window').height / 3}
+                    onChangeState={() =>
+                        this.setState({ shouldShowDuration: false })
+                    }
                 />
+                {this.state.shouldShowDuration ? (
+                    <Duration
+                        style={{
+                            position: 'absolute',
+                            right: 20,
+                            top: Dimensions.get('window').height / 3 - 30
+                        }}
+                    >
+                        {getDurationString(data.Videos.duration)}
+                    </Duration>
+                ) : null}
                 <TalkViewContent>
                     {data.Videos.speaker.map((speaker) => (
                         <Speaker
