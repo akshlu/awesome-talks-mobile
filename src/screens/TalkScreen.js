@@ -100,7 +100,7 @@ class TalkScreen extends React.PureComponent {
         const { navigator } = props;
         return (
             <TalkView>
-                {Platform.os === 'android' ? (
+                {Platform.OS === 'ios' ? (
                     <VideoPlayer
                         videoId={props.item.link}
                         height={Dimensions.get('window').height / 3}
