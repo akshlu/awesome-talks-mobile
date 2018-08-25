@@ -5,8 +5,10 @@ import R from 'ramda';
 import config from '../config';
 import { getCurrentTheme } from '../style';
 import { getTagsString } from '../services/text';
+import { getDurationString } from '../services/calendar';
 import H2 from './text/H2';
 import Tag from './text/Tag';
+import Duration from './text/Duration';
 
 const { colors } = getCurrentTheme();
 
@@ -33,10 +35,6 @@ const styles = StyleSheet.create({
     talkNameView: {
         alignItems: 'flex-start',
         flex: 1
-    },
-    talkDuration: {
-        fontSize: 10,
-        color: 'gray'
     },
     tag: {
         marginTop: 4
@@ -73,14 +71,12 @@ class TalkCard extends PureComponent {
                                 source={{ uri: preview }}
                             />
                         )}
+                        <Duration>{getDurationString(item.duration)}</Duration>
                     </View>
                     <View style={styles.talkNameView}>
                         <H2 numberOfLines={2} elipzizMode="tail">
                             {item.name.trim()}
                         </H2>
-                        {/* <Text style={styles.talkDuration}>
-                            {getDurationString(item.duration)}
-                        </Text> */}
                         <Tag
                             style={styles.tag}
                             numberOfLines={1}

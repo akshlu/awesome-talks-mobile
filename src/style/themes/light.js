@@ -3,7 +3,9 @@ const colors = {
     additional: '#ffd83b',
     red: '#e71d36',
     dark: '#28464b',
-    navBarBackgroundColor: 'white'
+    navBarBackgroundColor: 'white',
+    greyTransparent08: 'rgba(40, 70, 75, 0.8)',
+    white: '#fff'
 };
 
 const fonts = {
@@ -25,7 +27,7 @@ const fonts = {
         fontSize: 14,
         fontWeight: '500',
         lineHeight: 22,
-        color: 'rgba(40, 70, 75, 0.8)'
+        color: colors.greyTransparent08
     },
     small: {
         fontFamily: 'Montserrat',
@@ -33,6 +35,13 @@ const fonts = {
         fontWeight: '600',
         lineHeight: 17,
         color: 'rgba(40, 70, 75, 0.6)'
+    },
+    xSmall: {
+        fontFamily: 'Montserrat',
+        fontSize: 10,
+        fontWeight: '600',
+        lineHeight: 12,
+        color: colors.white
     },
     tag: {
         fontFamily: 'Montserrat',
