@@ -33,7 +33,7 @@ const SpeakerNameHeader = styled(Header)({
 });
 
 const Bio = styled(PlainText)({
-    marginTop: 24,
+    marginTop: 16,
     marginBottom: 24
 });
 
