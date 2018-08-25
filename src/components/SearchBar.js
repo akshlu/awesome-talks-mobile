@@ -7,7 +7,8 @@ import {
     StyleSheet,
     View,
     TextInput,
-    Image
+    Image,
+    Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { getCurrentTheme } from '../style';
@@ -127,7 +128,10 @@ class SearchBar extends React.PureComponent {
 const styles = StyleSheet.create({
     container: {
         width: SCREEN_WIDTH,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: Platform.select({
+            android: theme.colors.primary,
+            ios: '#f5f5f5'
+        }),
         paddingBottom: 13,
         paddingTop: 33,
         flexDirection: 'row'

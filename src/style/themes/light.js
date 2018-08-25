@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 const colors = {
     primary: '#2bb3ce',
     additional: '#ffd83b',
@@ -8,36 +10,31 @@ const colors = {
 
 const fonts = {
     header: {
-        fontFamily: 'Montserrat',
+        fontFamily: 'Montserrat-Bold',
         fontSize: 20,
-        fontWeight: 'bold',
         color: colors.dark
     },
     h2: {
-        fontFamily: 'Montserrat',
+        fontFamily: 'Montserrat-SemiBold',
         fontSize: 15,
-        fontWeight: '600',
         lineHeight: 20,
         color: colors.dark
     },
     plain: {
-        fontFamily: 'Montserrat',
+        fontFamily: 'Montserrat-Medium',
         fontSize: 14,
-        fontWeight: '500',
         lineHeight: 22,
         color: 'rgba(40, 70, 75, 0.8)'
     },
     small: {
-        fontFamily: 'Montserrat',
+        fontFamily: 'Montserrat-SemiBold',
         fontSize: 11,
-        fontWeight: '600',
         lineHeight: 17,
         color: 'rgba(40, 70, 75, 0.6)'
     },
     tag: {
-        fontFamily: 'Montserrat',
+        fontFamily: 'Montserrat-SemiBold',
         fontSize: 12,
-        fontWeight: '600',
         lineHeight: 17,
         color: colors.primary
     }
@@ -73,9 +70,28 @@ const navigatorStyle = {
     tabBarSelectedButtonColor: colors.primary,
     tabBarButtonColor: 'rgb(125, 143, 146)',
     screenBackgroundColor: 'white',
+    orientation: 'portrait',
 
-    // Android only
-    forceTitlesDisplay: true
+    ...Platform.select({
+        android: {
+            navBarTranslucent: false,
+            statusBarColor: 'rgba(0,0,0,0.1)',
+            statusBarTextColorScheme: 'light',
+            drawUnderStatusBar: true,
+            navBarTopPadding: 24,
+            navBarBackgroundColor: colors.primary,
+            navBarTextColor: 'white',
+            navBarButtonColor: 'white',
+            navBarTextFontBold: true,
+            navBarTextFontFamily: 'Montserrat-SemiBold',
+
+            // tabs
+            tabBarSelectedButtonColor: colors.primary,
+            tabBarButtonColor: 'rgb(125, 143, 146)',
+            tabFontFamily: 'Montserrat-Medium',
+            forceTitlesDisplay: true
+        }
+    })
 };
 
 const tabsStyle = {
