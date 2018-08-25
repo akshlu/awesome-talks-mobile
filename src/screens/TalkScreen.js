@@ -43,7 +43,7 @@ const Tag = styled(ClickableTag)({
 });
 
 const Description = styled(PlainText)({
-    marginTop: 24,
+    marginTop: 16,
     marginBottom: 24
 });
 
@@ -100,7 +100,7 @@ class TalkScreen extends React.PureComponent {
         const { navigator } = props;
         return (
             <TalkView>
-                {Platform.os === 'android' ? (
+                {Platform.OS === 'ios' ? (
                     <VideoPlayer
                         videoId={props.item.link}
                         height={Dimensions.get('window').height / 3}

@@ -28,7 +28,11 @@ class SearchBar extends React.PureComponent {
     constructor(props) {
         super(props);
 
-        this.state = { hasFocus: false, isEmpty: true };
+        this.state = {
+            hasFocus: false,
+            isEmpty: true,
+            value: props.value
+        };
         this.inputRef = React.createRef();
     }
 
@@ -73,12 +77,15 @@ class SearchBar extends React.PureComponent {
 
     handleChangeText = (text) => {
         this.props.onChangeText(text);
-        this.setState({ isEmpty: text === '' });
+        this.setState({
+            isEmpty: text === '',
+            value: text
+        });
     };
 
     render() {
-        const { props, state } = this;
-        const { hasFocus } = state;
+        const { state } = this;
+        const { hasFocus, value } = state;
         const SearchIcon = (
             <Image
                 size={20}
@@ -105,7 +112,7 @@ class SearchBar extends React.PureComponent {
                         onFocus={this.handleFocus}
                         onBlur={this.handleBlur}
                         onChangeText={this.handleChangeText}
-                        value={props.value}
+                        value={value}
                         placeholder="search"
                         style={styles.input}
                         clearButtonMode="always"

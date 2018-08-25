@@ -172,7 +172,7 @@ class SearchScreen extends React.PureComponent {
                     onClear={this.handleSearchChange.bind(this, '')}
                     onChangeText={debounce(
                         this.handleSearchChange.bind(this),
-                        500
+                        300
                     )}
                     onCancel={this.cancel.bind(this)}
                     onFocus={this.focus.bind(this)}
