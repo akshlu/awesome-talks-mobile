@@ -34,7 +34,7 @@ const SpeakerNameHeader = styled(Header)({
 
 const Bio = styled(PlainText)({
     marginTop: 16,
-    marginBottom: 24
+    marginBottom: 40
 });
 
 const TalksListHeader = styled.View({

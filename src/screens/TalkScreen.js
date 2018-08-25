@@ -43,7 +43,7 @@ const Tag = styled(ClickableTag)({
 });
 
 const Description = styled(PlainText)({
-    marginTop: 24,
+    marginTop: 16,
     marginBottom: 24
 });
 
