@@ -9,7 +9,7 @@ import { loadMore } from '../services/loadMore';
 import nonIdealState from '../hoc/nonIdealState';
 
 class SpeakersScreen extends React.PureComponent {
-    renderContent({ data, networkStatus, fetchMore, refetch, loading }) {
+    renderContent({ data, fetchMore, refetch, loading, networkStatus }) {
         const { props } = this;
         return (
             <SpeakerList
@@ -20,6 +20,7 @@ class SpeakersScreen extends React.PureComponent {
                     connection: data,
                     fieldname: 'allSpeakerses'
                 })}
+                onEndReachedThreshold={0.5}
                 onPullToRefresh={refetch}
                 speakersList={data.allSpeakerses}
                 navigator={props.navigator}

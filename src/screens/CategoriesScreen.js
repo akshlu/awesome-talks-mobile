@@ -43,6 +43,7 @@ export default class CategoriesScreen extends React.PureComponent {
                 loadingMore={networkStatus === NetworkStatus.fetchMore}
                 refreshing={networkStatus === NetworkStatus.refetch}
                 onPullToRefresh={refetch}
+                onEndReachedThreshold={0.5}
                 onEndReached={loadMore({
                     fetchMore,
                     connection: data,

@@ -8,7 +8,7 @@ import NoInternet from '../components/NoInternet';
 
 function renderError(refetch) {
     return (
-        <Query query={NET_INFO}>
+        <Query query={NET_INFO} notifyOnNetworkStatusChange>
             {({ data }) => {
                 if (data.isConnected) {
                     return <ServerError refetch={() => refetch()} />;
