@@ -17,7 +17,8 @@ export default class List extends Component {
             onPullToRefresh,
             refreshing,
             renderItem,
-            loadingMore
+            loadingMore,
+            onEndReachedThreshold
         } = props;
         return (
             <FlatList
@@ -28,7 +29,7 @@ export default class List extends Component {
                 data={items}
                 keyExtractor={keyExtractor}
                 onEndReached={onEndReached}
-                onEndReachedThreshold={0}
+                onEndReachedThreshold={onEndReachedThreshold || 0}
                 ListFooterComponent={<Footer showed={loadingMore} />}
             />
         );

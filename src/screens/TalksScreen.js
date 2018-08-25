@@ -9,7 +9,7 @@ import { loadMore } from '../services/loadMore';
 import nonIdealState from '../hoc/nonIdealState';
 
 class TalksScreen extends React.PureComponent {
-    renderResult({ data, networkStatus, fetchMore, refetch, loading }) {
+    renderResult = ({ data, fetchMore, refetch, loading, networkStatus }) => {
         const { props } = this;
         return (
             <TalksList
@@ -20,12 +20,13 @@ class TalksScreen extends React.PureComponent {
                     connection: data,
                     fieldname: 'allVideoses'
                 })}
+                onEndReachedThreshold={0.2}
                 talksList={data.allVideoses}
                 navigator={props.navigator}
                 onPullToRefresh={refetch}
             />
         );
-    }
+    };
 
     render() {
         const { props } = this;
@@ -41,7 +42,7 @@ class TalksScreen extends React.PureComponent {
                     variables={{ search }}
                     notifyOnNetworkStatusChange
                 >
-                    {nonIdealState.call(this, this.renderResult.bind(this))}
+                    {nonIdealState(this.renderResult)}
                 </Query>
             </ApolloProvider>
         );
