@@ -13,7 +13,6 @@ import TalkCard from '../components/TalkCard';
 import SpeakerCard from '../components/SpeakerCard';
 import CategoryCard from '../components/CategoryCard';
 import SectionHeader from '../components/SectionHeader';
-import { debounce } from '../services/debounce';
 import { getApolloClient } from '../net/graphqlClient';
 import { SEARCH_QUERY } from '../net/queries';
 import { screens } from '../screens';
@@ -68,13 +67,13 @@ class SearchScreen extends React.PureComponent {
 
     focus() {
         UIManager.configureNextLayoutAnimation &&
-            LayoutAnimation.easeInEaseOut();
+        LayoutAnimation.easeInEaseOut();
         this.setState({ focused: true });
     }
 
     blur() {
         UIManager.configureNextLayoutAnimation &&
-            LayoutAnimation.easeInEaseOut();
+        LayoutAnimation.easeInEaseOut();
         this.setState({ focused: false });
     }
 
@@ -168,10 +167,7 @@ class SearchScreen extends React.PureComponent {
             <View style={styles.container}>
                 <SearchBar
                     onClear={this.handleSearchChange.bind(this, '')}
-                    onChangeText={debounce(
-                        this.handleSearchChange.bind(this),
-                        500
-                    )}
+                    onChangeText={this.handleSearchChange.bind(this)}
                     onCancel={this.cancel.bind(this)}
                     onFocus={this.focus.bind(this)}
                     onBlur={this.blur.bind(this)}
