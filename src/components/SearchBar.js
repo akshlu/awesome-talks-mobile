@@ -1,12 +1,13 @@
 import React from 'react';
 import {
-    Button,
     Dimensions,
     LayoutAnimation,
     UIManager,
     StyleSheet,
     View,
     TextInput,
+    Text,
+    TouchableOpacity,
     Image
 } from 'react-native';
 import PropTypes from 'prop-types';
@@ -60,14 +61,14 @@ class SearchBar extends React.PureComponent {
         const { onFocus } = this.props;
         onFocus();
         UIManager.configureNextLayoutAnimation &&
-            LayoutAnimation.easeInEaseOut();
+        LayoutAnimation.easeInEaseOut();
         this.setState({ hasFocus: true });
     };
 
     handleBlur = () => {
         this.props.onBlur();
         UIManager.configureNextLayoutAnimation &&
-            LayoutAnimation.easeInEaseOut();
+        LayoutAnimation.easeInEaseOut();
         this.setState({ hasFocus: false });
     };
 
@@ -109,9 +110,15 @@ class SearchBar extends React.PureComponent {
                         placeholder="search"
                         style={styles.input}
                         clearButtonMode="always"
+                        underlineColorAndroid="transparent" // android specific
                     />
                 </View>
-                <Button title="Cancel" onPress={this.cancel} />
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={this.cancel}
+                >
+                    <Text style={styles.buttonText}>Cancel</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -145,6 +152,18 @@ const styles = StyleSheet.create({
     },
     leftIconContainerStyle: {
         marginLeft: 8
+    },
+    button: {
+        alignItems: 'center',
+        backgroundColor: 'transparent',
+        paddingVertical: 7,
+        paddingHorizontal: 8
+    },
+    buttonText: {
+        color: theme.colors.primary,
+        fontSize: 18,
+        lineHeight: 22,
+        height: 22
     }
 });
 
