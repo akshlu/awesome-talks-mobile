@@ -1,4 +1,8 @@
-# Awesome Talks Mobile App
+<p align="center">
+  <img alt="logo" src="https://user-images.githubusercontent.com/460919/202657726-ef561a50-3012-4269-a500-d72db2bc1d3c.png" height="135px">
+  <h1 align="center">Awesome Talks Mobile App</h1>
+</p>
+
 [![CircleCI](https://circleci.com/gh/akshlu/awesome-talks-mobile/tree/master.svg?style=svg)](https://circleci.com/gh/akshlu/awesome-talks-mobile/tree/master)
 
 [![Download on the AppStore](https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg)](https://itunes.apple.com/us/app/awesome-talks/id1394086097?mt=8)
