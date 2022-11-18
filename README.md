@@ -7,6 +7,9 @@ React Native application for Awesome Talks from [Sara Vieira](https://github.com
 
 ## What?
 Mobile app for [Awesome Tech Talks](https://github.com/SaraVieira/awesome-talks)
+
+![1242x2208bb-2](https://user-images.githubusercontent.com/460919/202651009-466796c2-6c3c-4310-a0b4-a061d554407f.png)
+
 ## How to Run it ?
 ### Install
 You should have NodeJS, git and all crazy mobile stuff (XCode/Android Studio, etc). Please read [React Native Documentation](https://facebook.github.io/react-native/docs/getting-started.html).
